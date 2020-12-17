@@ -9,7 +9,7 @@ cross_sections=[]
 years=[]
 brs_points=[]
 def PrintGroupMenu():
-        print("1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group")
+        print("1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group\n5 go back")
         w=int(input())
         if w==1:
                 AddGroup()
@@ -23,10 +23,12 @@ def PrintGroupMenu():
                 DeleteGroup()
         elif w==4:
                 EditGroup()
+        elif w==5:
+                PrintMenu()
         else:
                 print("error")
 def PrintSubjectMenu():
-        print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject")
+        print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back")
         w=int(input())
         if w==1:
                 AddSubject()
@@ -40,16 +42,21 @@ def PrintSubjectMenu():
                 DeleteSubject()
         elif w==4:
                 EditSubject()
+        elif w==5:
+                PrintMenu()
         else:
                 print("error")
 def PrintMenu():
         print('''1 - GroupMenu
-2 - SubjectMenu''')
+2 - SubjectMenu
+3 - exit''')
         w=int(input())
         if w==1:
                 PrintGroupMenu()
         elif w==2:
                 PrintSubjectMenu()
+        elif w==3:
+                return 0
         else:
                 print("error")
 def AddGroup():
