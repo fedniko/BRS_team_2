@@ -3,49 +3,77 @@ from EducationYear import EducationYear
 from Group import Group
 from Subject import Subject
 
-class Main:
-    def __init__(self):
-        groups=[]
-        subjects=[]
-        cross_sections=[]
-        years=[]
-        brs_points=[]
-    def PrintGroupMenu(self):
-        print("Nothing to do there")
-    def PrintSubjectMenu(self):
-        print("Nothing to do there")
-    def PrintMenu():
+groups=[]
+subjects=[]
+cross_sections=[]
+years=[]
+brs_points=[]
+def PrintGroupMenu():
+        print("1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group")
+        w=int(input())
+        if w==1:
+                AddGroup()
+        elif w==2:
+                print("===start===")
+                for i in groups:
+                        print(i.year+' '+i.name+'\n')
+                print("===end===")
+                PrintGroupMenu()
+        elif w==3:
+                DeleteGroup()
+        elif w==4:
+                EditGroup()
+        else:
+                print("error")
+def PrintSubjectMenu():
+        print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject")
+        w=int(input())
+        if w==1:
+                AddSubject()
+        elif w==2:
+                print("===start===")
+                for i in subjects:
+                        print(i.code+' '+i.name+'\n')
+                print("===end===")
+                PrintSubjectMenu()
+        elif w==3:
+                DeleteSubject()
+        elif w==4:
+                EditSubject()
+        else:
+                print("error")
+def PrintMenu():
         print('''1 - GroupMenu
 2 - SubjectMenu''')
         w=int(input())
         if w==1:
                 PrintGroupMenu()
-        if w==2:
+        elif w==2:
                 PrintSubjectMenu()
         else:
                 print("error")
-    def AddGroup(self):
+def AddGroup():
         pass
-    def EditGroup(self):
+def EditGroup():
         pass
-    def DeleteGroup(self):
+def DeleteGroup():
         pass
-    def AddStudent(self):
+def AddStudent():
         pass
-    def EditStudent(self):
+def EditStudent():
         pass
-    def RemoveStudent(self):
+def RemoveStudent():
         pass
-    def AddSubject(self):
+def AddSubject():
         pass
-    def EditSubject(self):
+def EditSubject():
         pass
-    def DeleteSubject(self):
+def DeleteSubject():
         pass
-    def AddBrsPoint(self):
+def AddBrsPoint():
         pass
-    def EditBrsPoint(self):
+def EditBrsPoint():
         pass
-    def DeleteBrsPoint(self):
+def DeleteBrsPoint():
         pass
-Main.PrintMenu()
+PrintMenu()
