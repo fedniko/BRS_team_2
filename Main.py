@@ -3,12 +3,14 @@ from EducationYear import EducationYear
 from Group import Group
 from Subject import Subject
 from Factory import Factory
+from Student import Student
 
 groups = []
 subjects = []
 cross_sections = []
 years = []
 brs_points = []
+students = {}
 
 
 def PrintGroupMenu():
@@ -53,16 +55,39 @@ def PrintSubjectMenu():
         print("error")
 
 
+def PrintStudentMenu():
+    print("1 create a new Student\n2 show all created students\n3 remove student\n4 edit student\n5 go back")
+    w = int(input())
+    if w == 1:
+        AddStudent()
+    elif w == 2:
+        print("===start===")
+        print(students)
+        print("===end===")
+        PrintStudentMenu()
+    elif w == 3:
+        RemoveStudent()
+    elif w == 4:
+        EditStudent()
+    elif w == 5:
+        PrintMenu()
+    else:
+        print("error")
+
+
 def PrintMenu():
     print('''1 - GroupMenu
 2 - SubjectMenu
-3 - exit''')
+3 - StudentMenu
+4 - exit''')
     w = int(input())
     if w == 1:
         PrintGroupMenu()
     elif w == 2:
         PrintSubjectMenu()
     elif w == 3:
+        PrintStudentMenu()
+    elif w == 4:
         return 0
     else:
         print("error")
@@ -81,21 +106,31 @@ def DeleteGroup():
 
 
 def AddStudent():
-    code = 11
-    fio = 'aaa'
-    birthdate = '01.01.2020'
-    email = 'a@a.ru'
-    phone = '1234'
-    a = Factory.create_student(code, fio, birthdate, email, phone)
-    print(a)
+    print('Введите код студента')
+    code = int(input())
+    print('Введите ФИО студента')
+    fio = str(input())
+    print('Введите дату рождения студента')
+    birthdate = str(input())
+    print('Введите email студента')
+    email = str(input())
+    print('Введите телефон студента')
+    phone = str(input())
+    Factory.create_student(code, fio, birthdate, email, phone)
+    students[code] = fio, birthdate, email, phone
+    print('Студент создан')
+    PrintStudentMenu()
 
 
 def EditStudent():
-    pass
+    AddStudent()
 
 
 def RemoveStudent():
-    pass
+    print('Введите код студента')
+    students.pop(int(input()), print('Студент с таким кодом не найден'))
+    'Студент успешно удален'
+    PrintStudentMenu()
 
 
 def AddSubject():
