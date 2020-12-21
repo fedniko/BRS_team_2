@@ -170,7 +170,7 @@ def DeleteSubject():
         print('Предмет успешно удален')
     else:
         print('Предмет с таким кодом не найден')
-    PrintStudentMenu()
+    PrintSubjectMenu()
 
 def AddBrsPoint():
     pass
