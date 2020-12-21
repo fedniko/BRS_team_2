@@ -11,6 +11,5 @@ class Factory:
     def create_Gruop(name, year):
         return name.__init__(), year.__init__()
 
-    def creat_Subject(code, name):
+    def create_Subject(code, name):
         return code.__init__(), name.__init__()
-
