@@ -126,7 +126,7 @@ def EditStudent():
     print('Введите код студента')
     a = int(input())
     try:
-        students.pop(a)
+        print(students.pop(a))
         AddStudent(a)
     except KeyError:
         print('Студент с таким кодом не найден')

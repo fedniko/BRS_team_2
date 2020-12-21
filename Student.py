@@ -8,3 +8,7 @@ class Student:
         self.birthdate = birthdate
         self.email = email
         self.phone = phone
+
+    def __str__(self):
+        template = 'Код: {} ФИО: {} Дата: {} Почта: {} Телефон: {}'
+        return template.format(self.code, self.fio, self.birthdate, self.email, self.phone)
