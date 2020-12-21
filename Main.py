@@ -59,7 +59,8 @@ def PrintStudentMenu():
     print("1 create a new Student\n2 show all created students\n3 remove student\n4 edit student\n5 go back")
     w = int(input())
     if w == 1:
-        AddStudent()
+        print('Введите код студента')
+        AddStudent(int(input()))
     elif w == 2:
         print("===start===")
         print(students)
@@ -105,9 +106,8 @@ def DeleteGroup():
     pass
 
 
-def AddStudent():
-    print('Введите код студента')
-    code = int(input())
+def AddStudent(a):
+    code = a
     print('Введите ФИО студента')
     fio = str(input())
     print('Введите дату рождения студента')
@@ -118,12 +118,19 @@ def AddStudent():
     phone = str(input())
     Factory.create_student(code, fio, birthdate, email, phone)
     students[code] = fio, birthdate, email, phone
-    print('Студент создан')
+    print('Студент создан/изменен')
     PrintStudentMenu()
 
 
 def EditStudent():
-    AddStudent()
+    print('Введите код студента')
+    a = int(input())
+    try:
+        students.pop(a)
+        AddStudent(a)
+    except KeyError:
+        print('Студент с таким кодом не найден')
+        PrintStudentMenu()
 
 
 def RemoveStudent():
