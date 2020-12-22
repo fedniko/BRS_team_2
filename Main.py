@@ -6,7 +6,7 @@ from Factory import Factory
 from Student import Student
 
 groups = []
-subjects = []
+subjects = {}
 cross_sections = []
 years = []
 brs_points = []
@@ -43,7 +43,7 @@ def PrintSubjectMenu():
     elif w == 2:
         print("===start===")
         for i in subjects:
-            print(i.code + ' ' + i.name + '\n')
+            print(subjects)
         print("===end===")
         PrintSubjectMenu()
     elif w == 3:
