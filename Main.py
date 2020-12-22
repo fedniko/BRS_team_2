@@ -38,7 +38,8 @@ def PrintSubjectMenu():
     print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back")
     w = int(input())
     if w == 1:
-        AddSubject()
+        print('Введите код предмета')
+        AddSubject(int(input()))
     elif w == 2:
         print("===start===")
         for i in subjects:
@@ -140,17 +141,36 @@ def RemoveStudent():
     PrintStudentMenu()
 
 
-def AddSubject():
-    pass
+def AddSubject(a):
+    code = a
+    print('Введите название предмета')
+    name = str(input())
+    Factory.create_Subject(code, name)
+    subjects[code] = name
+    print('Предмет создан')
+    PrintSubjectMenu()
 
 
 def EditSubject():
-    pass
+    print('Введите код предмета')
+    a = int(input())
+    try:
+        print(subjects.pop(a))
+        AddSubject(a)
+    except KeyError:
+        print('Предмет с таким кодом не найден')
+        PrintSubjectMenu()
 
 
 def DeleteSubject():
-    pass
-
+    print('Введите код предмета')
+    a = int(input())
+    if a in subjects:
+        subjects.remove(a)
+        print('Предмет успешно удален')
+    else:
+        print('Предмет с таким кодом не найден')
+    PrintSubjectMenu()
 
 def AddBrsPoint():
     pass
