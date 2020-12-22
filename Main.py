@@ -2,7 +2,7 @@ from Crosssection import CrossSection
 from EducationYear import EducationYear
 from Group import Group
 from Subject import Subject
-from Factory import Factory
+from Factory import *
 from Student import Student
 
 groups = []
@@ -61,7 +61,7 @@ def PrintStudentMenu():
     w = int(input())
     if w == 1:
         print('Введите код студента')
-        AddStudent(int(input()))
+        AddStudent(str(input()))
     elif w == 2:
         print("===start===")
         print(students)
@@ -117,8 +117,8 @@ def AddStudent(a):
     email = str(input())
     print('Введите телефон студента')
     phone = str(input())
-    Factory.create_student(code, fio, birthdate, email, phone)
-    students[code] = fio, birthdate, email, phone
+    create_student(code, fio, birthdate, email, phone)
+    students[int(code)] = fio, birthdate, email, phone
     print('Студент создан/изменен')
     PrintStudentMenu()
 
