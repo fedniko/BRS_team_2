@@ -111,7 +111,7 @@ def AddStudent(a):
     code = a
     print('Введите ФИО студента')
     fio = str(input())
-    print('Введите дату рождения студента')
+    print('Введите дату рождения студента в формате ДД.ММ.ГГГГ')
     birthdate = str(input())
     print('Введите email студента')
     email = str(input())
@@ -131,7 +131,7 @@ def EditStudent():
         AddStudent(a)
     except KeyError:
         print('Студент с таким кодом не найден')
-        PrintStudentMenu()
+        # PrintStudentMenu()
 
 
 def RemoveStudent():
@@ -142,7 +142,7 @@ def RemoveStudent():
         PrintStudentMenu()
     except KeyError:
         print('Студент с таким кодом не найден')
-        PrintStudentMenu()
+        # PrintStudentMenu()
 
 
 def AddSubject(a):
