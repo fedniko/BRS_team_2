@@ -136,9 +136,13 @@ def EditStudent():
 
 def RemoveStudent():
     print('Введите код студента')
-    students.pop(int(input()), print('Студент с таким кодом не найден'))
-    'Студент успешно удален'
-    PrintStudentMenu()
+    try:
+        print(students.pop(int(input())))
+        print('Студент успешно удален')
+        PrintStudentMenu()
+    except KeyError:
+        print('Студент с таким кодом не найден')
+        PrintStudentMenu()
 
 
 def AddSubject(a):
@@ -164,13 +168,14 @@ def EditSubject():
 
 def DeleteSubject():
     print('Введите код предмета')
-    a = int(input())
-    if a in subjects:
-        subjects.remove(a)
+    try:
+        print(subjects.pop(int(input())))
         print('Предмет успешно удален')
-    else:
+        PrintSubjectMenu()
+    except KeyError:
         print('Предмет с таким кодом не найден')
-    PrintSubjectMenu()
+        PrintSubjectMenu()
+
 
 def AddBrsPoint():
     pass
