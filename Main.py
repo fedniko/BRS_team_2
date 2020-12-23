@@ -39,7 +39,7 @@ def PrintSubjectMenu():
     w = int(input())
     if w == 1:
         print('Введите код предмета')
-        AddSubject(int(input()))
+        AddSubject(str(input()))
     elif w == 2:
         print("===start===")
         for i in subjects:
@@ -149,32 +149,32 @@ def AddSubject(a):
     code = a
     print('Введите название предмета')
     name = str(input())
-    Factory.create_Subject(code, name)
-    subjects[code] = name
+    create_subject(code, name)
+    subjects[str(input(code))] = name
     print('Предмет создан')
     PrintSubjectMenu()
 
 
 def EditSubject():
     print('Введите код предмета')
-    a = int(input())
+    a = str(input())
     try:
         print(subjects.pop(a))
         AddSubject(a)
     except KeyError:
         print('Предмет с таким кодом не найден')
-        PrintSubjectMenu()
+        #PrintSubjectMenu()
 
 
 def DeleteSubject():
     print('Введите код предмета')
     try:
-        print(subjects.pop(int(input())))
+        print(subjects.pop(str(input())))
         print('Предмет успешно удален')
         PrintSubjectMenu()
     except KeyError:
         print('Предмет с таким кодом не найден')
-        PrintSubjectMenu()
+        #PrintSubjectMenu()
 
 
 def AddBrsPoint():

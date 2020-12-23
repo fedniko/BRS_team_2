@@ -1,4 +1,5 @@
-import unittest, io
+import unittest
+import io
 from unittest.mock import patch
 from Student import Student
 from Factory import create_student
@@ -87,7 +88,6 @@ class StudentTestCase(unittest.TestCase):
         format_name = Student(code=1, fio='Федоров Николай Иванович', birthdate='22.05.1996',
                               email='fednik2011@gmail.com', phone='89142334939')
         self.assertEqual(format_name.fio, 'Федоров Николай Иванович')
-
 
 if __name__ == "__main__":
     unittest.main()
