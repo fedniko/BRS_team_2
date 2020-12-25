@@ -63,8 +63,7 @@ def PrintStudentMenu():
           '4 Редактировать даннные студента\n5 Назад')
     w = int(input())
     if w == 1:
-        print('Введите код студента')
-        AddStudent(str(input()))
+        AddStudent()
     elif w == 2:
         print("===start===")
         for i in students:
@@ -113,8 +112,9 @@ def DeleteGroup():
     pass
 
 
-def AddStudent(a):
-    code = a
+def AddStudent():
+    print('Введите код студента')
+    code = str(input())
     print('Введите ФИО студента')
     fio = str(input())
     print('Введите дату рождения студента в формате ДД.ММ.ГГГГ')
@@ -125,7 +125,7 @@ def AddStudent(a):
     phone = str(input())
     x = create_student(code, fio, birthdate, email, phone)
     students.append(x)
-    print('Студент создан/изменен')
+    print('Студент успешно создан')
     if __name__ == '__main__':
         PrintStudentMenu()
 

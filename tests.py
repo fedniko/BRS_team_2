@@ -3,7 +3,7 @@ import io
 from unittest.mock import patch
 from Student import Student
 from Factory import create_student
-from Main import EditStudent, RemoveStudent
+from Main import EditStudent, RemoveStudent, AddStudent, PrintStudentMenu
 
 
 class CreateStudentTestCase(unittest.TestCase):
@@ -66,21 +66,35 @@ class CreateStudentTestCase(unittest.TestCase):
 
 
 class MainStudentTestCase(unittest.TestCase):
-    def test_EditStudent(self):
-        inputs = [1]
-        with patch('builtins.input', side_effect=inputs):
-            with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
-                EditStudent()
-        result = mock_print.getvalue()
-        self.assertEqual('Введите код студента\nСтудент с таким кодом не найден', result.strip())
+    def setUp(self):
+        self.main_menu_expected = 'Введите код студента\nСтудент с таким кодом не найден'
+        self.main_menu_expected1 = 'Введите код студента\nВведите ФИО студента\n' \
+                                   'Введите дату рождения студента в формате ДД.ММ.ГГГГ\nВведите email студента\n' \
+                                   'Введите телефон студента\nСтудент успешно создан'
+        self.user_menu_input = [1]
+        self.user_menu_input1 = ['2', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
+                                 '89142334939']
 
-    def test_RemoveStudent(self):
-        inputs = [1]
-        with patch('builtins.input', side_effect=inputs):
-            with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
-                RemoveStudent()
-        result = mock_print.getvalue()
-        self.assertEqual('Введите код студента\nСтудент с таким кодом не найден', result.strip())
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_EditStudentError(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input):
+            EditStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_RemoveStudentError(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input):
+            RemoveStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_AddStudent(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input1):
+            AddStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected1, result)
 
 
 class StudentTestCase(unittest.TestCase):
