@@ -160,7 +160,7 @@ def EditStudent():
             PrintStudentMenu()
     else:
         print('Студент с таким кодом не найден')
-        PrintStudentMenu()
+        # PrintStudentMenu()
 
 
 def RemoveStudent():
@@ -173,7 +173,7 @@ def RemoveStudent():
             PrintStudentMenu()
     else:
         print('Студент с таким кодом не найден')
-        PrintStudentMenu()
+        # PrintStudentMenu()
 
 
 def AddSubject(a):
