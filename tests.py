@@ -68,15 +68,16 @@ class CreateStudentTestCase(unittest.TestCase):
 class MainStudentTestCase(unittest.TestCase):
     def test_EditStudent(self):
         inputs = ['1']
-        with patch('builtins.input', side_effect=inputs) as mock_input:
+        with patch('builtins.input', side_effect=inputs):
             with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
                 EditStudent()
         result = mock_print.getvalue()
-        self.assertEqual('Введите код студента\nСтудент с таким кодом не найден', result.strip())
+        self.assertEqual('Студент с таким кодом не найден\n1 Создать нового студента\n2 Показать всех студентов\n'
+                         '3 Удалить студента\n''4 Редактировать даннные студента\n5 Назад', result.strip())
 
     def test_RemoveStudent(self):
         inputs = ['1']
-        with patch('builtins.input', side_effect=inputs) as mock_input:
+        with patch('builtins.input', side_effect=inputs):
             with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
                 RemoveStudent()
         result = mock_print.getvalue()
@@ -88,6 +89,7 @@ class StudentTestCase(unittest.TestCase):
         format_name = Student(code=1, fio='Федоров Николай Иванович', birthdate='22.05.1996',
                               email='fednik2011@gmail.com', phone='89142334939')
         self.assertEqual(format_name.fio, 'Федоров Николай Иванович')
+
 
 if __name__ == "__main__":
     unittest.main()

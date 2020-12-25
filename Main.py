@@ -6,11 +6,11 @@ from Factory import *
 from Student import Student
 
 groups = []
-subjects = {}
+subjects = []
 cross_sections = []
 years = []
 brs_points = []
-students = {}
+students = []
 
 
 def PrintGroupMenu():
@@ -44,7 +44,7 @@ def PrintSubjectMenu():
     elif w == 2:
         print("===start===")
         for i in subjects:
-            print(subjects)
+            print(str(i)+'\n')
         print("===end===")
         PrintSubjectMenu()
     elif w == 3:
@@ -59,14 +59,16 @@ def PrintSubjectMenu():
 
 
 def PrintStudentMenu():
-    print("1 create a new Student\n2 show all created students\n3 remove student\n4 edit student\n5 go back")
+    print('1 Создать нового студента\n2 Показать всех студентов\n3 Удалить студента\n'
+          '4 Редактировать даннные студента\n5 Назад')
     w = int(input())
     if w == 1:
         print('Введите код студента')
         AddStudent(str(input()))
     elif w == 2:
         print("===start===")
-        print(students)
+        for i in students:
+            print(str(i)+'\n')
         print("===end===")
         PrintStudentMenu()
     elif w == 3:
@@ -121,8 +123,8 @@ def AddStudent(a):
     email = str(input())
     print('Введите телефон студента')
     phone = str(input())
-    create_student(code, fio, birthdate, email, phone)
-    students[int(code)] = fio, birthdate, email, phone
+    x = create_student(code, fio, birthdate, email, phone)
+    students.append(x)
     print('Студент создан/изменен')
     PrintStudentMenu()
 
@@ -130,31 +132,56 @@ def AddStudent(a):
 def EditStudent():
     print('Введите код студента')
     a = int(input())
-    try:
-        print(students.pop(a))
-        AddStudent(a)
-    except KeyError:
+    for i in students:
+        if i.code == a:
+            print('Что хотите изменить?')
+            print("1 Код\n2 ФИО\n3 Дата рождения\n4 Почта\n5 Телефон\n6 Назад")
+            w = int(input())
+            if w == 1:
+                print('Введите новый код студента')
+                i.code = (int(input()))
+            elif w == 2:
+                print('Введите новое ФИО студента')
+                i.fio = (str(input()))
+            elif w == 3:
+                print('Введите новую дату рождения студента')
+                i.birthdate = (str(input()))
+            elif w == 4:
+                print('Введите новую почту студента')
+                i.email = (str(input()))
+            elif w == 5:
+                print('Введите новый телефон студента')
+                i.phone = (str(input()))
+            elif w == 5:
+                PrintStudentMenu()
+            else:
+                print("error")
+                PrintStudentMenu()
+            PrintStudentMenu()
+    else:
         print('Студент с таким кодом не найден')
-        # PrintStudentMenu()
+        PrintStudentMenu()
 
 
 def RemoveStudent():
     print('Введите код студента')
-    try:
-        print(students.pop(int(input())))
-        print('Студент успешно удален')
-        PrintStudentMenu()
-    except KeyError:
+    x = int(input())
+    for i in students:
+        if i.code == x:
+            students.remove(i)
+            print('Студент успешно удален')
+            PrintStudentMenu()
+    else:
         print('Студент с таким кодом не найден')
-        # PrintStudentMenu()
+        PrintStudentMenu()
 
 
 def AddSubject(a):
     code = a
     print('Введите название предмета')
     name = str(input())
-    create_subject(code, name)
-    subjects[str(input(code))] = name
+    x = create_subject(code, name)
+    subjects.append(x)
     print('Предмет создан')
     PrintSubjectMenu()
 
@@ -162,23 +189,39 @@ def AddSubject(a):
 def EditSubject():
     print('Введите код предмета')
     a = str(input())
-    try:
-        print(subjects.pop(a))
-        AddSubject(a)
-    except KeyError:
+    for i in subjects:
+        if i.code == a:
+            print('Что хотите изменить?')
+            print("1 Код\n2 Название\n3 Назад")
+            w = int(input())
+            if w == 1:
+                print('Введите новый код предмета')
+                i.code = (str(input()))
+            elif w == 2:
+                print('Введите новое название предмета')
+                i.name = (str(input()))
+            elif w == 3:
+                PrintSubjectMenu()
+            else:
+                print("error")
+                PrintSubjectMenu()
+            PrintSubjectMenu()
+    else:
         print('Предмет с таким кодом не найден')
-        #PrintSubjectMenu()
+        PrintSubjectMenu()
 
 
 def DeleteSubject():
     print('Введите код предмета')
-    try:
-        print(subjects.pop(str(input())))
-        print('Предмет успешно удален')
-        PrintSubjectMenu()
-    except KeyError:
+    x = str(input())
+    for i in subjects:
+        if i.code == x:
+            subjects.remove(i)
+            print('Предмет успешно удален')
+            PrintSubjectMenu()
+    else:
         print('Предмет с таким кодом не найден')
-        #PrintSubjectMenu()
+        PrintSubjectMenu()
 
 
 def AddBrsPoint():
