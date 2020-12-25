@@ -44,7 +44,7 @@ def PrintSubjectMenu():
     elif w == 2:
         print("===start===")
         for i in subjects:
-            print(str(i)+'\n')
+            print(str(i) + '\n')
         print("===end===")
         PrintSubjectMenu()
     elif w == 3:
@@ -68,7 +68,7 @@ def PrintStudentMenu():
     elif w == 2:
         print("===start===")
         for i in students:
-            print(str(i)+'\n')
+            print(str(i) + '\n')
         print("===end===")
         PrintStudentMenu()
     elif w == 3:
@@ -126,7 +126,8 @@ def AddStudent(a):
     x = create_student(code, fio, birthdate, email, phone)
     students.append(x)
     print('Студент создан/изменен')
-    PrintStudentMenu()
+    if __name__ == '__main__':
+        PrintStudentMenu()
 
 
 def EditStudent():
@@ -153,14 +154,18 @@ def EditStudent():
                 print('Введите новый телефон студента')
                 i.phone = (str(input()))
             elif w == 5:
-                PrintStudentMenu()
+                if __name__ == '__main__':
+                    PrintStudentMenu()
             else:
                 print("error")
+                if __name__ == '__main__':
+                    PrintStudentMenu()
+            if __name__ == '__main__':
                 PrintStudentMenu()
-            PrintStudentMenu()
     else:
         print('Студент с таким кодом не найден')
-        # PrintStudentMenu()
+        if __name__ == '__main__':
+            PrintStudentMenu()
 
 
 def RemoveStudent():
@@ -170,10 +175,12 @@ def RemoveStudent():
         if i.code == x:
             students.remove(i)
             print('Студент успешно удален')
-            PrintStudentMenu()
+            if __name__ == '__main__':
+                PrintStudentMenu()
     else:
         print('Студент с таким кодом не найден')
-        # PrintStudentMenu()
+        if __name__ == '__main__':
+            PrintStudentMenu()
 
 
 def AddSubject(a):
@@ -183,7 +190,8 @@ def AddSubject(a):
     x = create_subject(code, name)
     subjects.append(x)
     print('Предмет создан')
-    PrintSubjectMenu()
+    if __name__ == '__main__':
+        PrintSubjectMenu()
 
 
 def EditSubject():
@@ -204,11 +212,14 @@ def EditSubject():
                 PrintSubjectMenu()
             else:
                 print("error")
+                if __name__ == '__main__':
+                    PrintSubjectMenu()
+            if __name__ == '__main__':
                 PrintSubjectMenu()
-            PrintSubjectMenu()
     else:
         print('Предмет с таким кодом не найден')
-        PrintSubjectMenu()
+        if __name__ == '__main__':
+            PrintSubjectMenu()
 
 
 def DeleteSubject():
@@ -218,10 +229,12 @@ def DeleteSubject():
         if i.code == x:
             subjects.remove(i)
             print('Предмет успешно удален')
-            PrintSubjectMenu()
+            if __name__ == '__main__':
+                PrintSubjectMenu()
     else:
         print('Предмет с таким кодом не найден')
-        PrintSubjectMenu()
+        if __name__ == '__main__':
+            PrintSubjectMenu()
 
 
 def AddBrsPoint():
