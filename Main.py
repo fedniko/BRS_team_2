@@ -1,4 +1,4 @@
-from Crosssection import CrossSection
+﻿from Crosssection import CrossSection
 from EducationYear import EducationYear
 from Group import Group
 from Subject import Subject
@@ -189,4 +189,5 @@ def DeleteBrsPoint():
     pass
 
 
-PrintMenu()
+if __name__ == '__main__':
+    PrintMenu()
