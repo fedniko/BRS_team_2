@@ -22,16 +22,23 @@ dg=Group("FIIT",20)
 groups.append(dg)
 sg=Subject(25,"Algebra")
 subjects.append(sg)
-MainMenu_e="1 - GroupMenu\n2 - SubjectMenu\n3 - StudentMenu\n4 - exit"
+MainMenu_e="1 - GroupMenu\n2 - SubjectMenu\n3 - StudentMenu\n4 - BRSMenu\n5 - exit"
 GroupMenu_e='1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group\n5 go back'
 SubjectMenu_e='1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back'
 error_e='error'
 
 class PrintMenu_tests(unittest.TestCase):
 
+    def test_testcase0(self):
+        find = 0
+        for i in subjects:
+            if i.code == 25:
+                find = 1
+        self.assertEqual(1, find)
+
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase1(self, mock_obj):
-        input = ['2','5','4']
+        input = ['2','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -39,7 +46,7 @@ class PrintMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase2(self, mock_obj):
-        input = ['4','3']
+        input = ['7','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -47,7 +54,7 @@ class PrintMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase3(self, mock_obj):
-        input = ['kjojih','4']
+        input = ['kjojih','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -55,7 +62,7 @@ class PrintMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase4(self, mock_obj):
-        input = ['-7','4']
+        input = ['-7','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -63,7 +70,7 @@ class PrintMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase5(self, mock_obj):
-        input = ['4']
+        input = ['5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -71,7 +78,7 @@ class PrintMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase6(self, mock_obj):
-        input = ['1','5','4']
+        input = ['1','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintMenu()
         result = mock_obj.getvalue()
@@ -81,7 +88,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase1(self, mock_obj):
-        input = ['53','5','4']
+        input = ['53','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
@@ -89,7 +96,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase2(self, mock_obj):
-        input = ['hugyhf','5','4']
+        input = ['hugyhf','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
@@ -97,7 +104,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase3(self, mock_obj):
-        input = ['5','4']
+        input = ['5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
@@ -105,7 +112,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase4(self, mock_obj):
-        input = ['0','5','4']
+        input = ['0','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
@@ -113,7 +120,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase5(self, mock_obj):
-        input = ['2','5','4']
+        input = ['2','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
@@ -123,7 +130,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase2(self, mock_obj):
-        input = ['53','5','4']
+        input = ['53','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()
@@ -131,7 +138,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase3(self, mock_obj):
-        input = ['hugyhf','5','4']
+        input = ['hugyhf','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()
@@ -139,7 +146,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase4(self, mock_obj):
-        input = ['5','4']
+        input = ['5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()
@@ -147,7 +154,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase5(self, mock_obj):
-        input = ['0','5','4']
+        input = ['0','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()
@@ -155,7 +162,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_testcase6(self, mock_obj):
-        input = ['2','5','4']
+        input = ['2','5','5']
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()

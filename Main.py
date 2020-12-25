@@ -15,20 +15,20 @@ students = []
 
 def PrintGroupMenu():
     print("1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group\n5 go back")
-    w = int(input())
-    if w == 1:
+    w = input()
+    if w == "1":
         AddGroup()
-    elif w == 2:
+    elif w == "2":
         print("===start===")
         for i in groups:
-            print(i.year + ' ' + i.name + '\n')
+            print(str(i.year) + ' ' + str(i.name) + '\n')
         print("===end===")
         PrintGroupMenu()
-    elif w == 3:
+    elif w == "3":
         DeleteGroup()
-    elif w == 4:
+    elif w == "4":
         EditGroup()
-    elif w == 5:
+    elif w == "5":
         PrintMenu()
     else:
         print("error")
@@ -37,21 +37,21 @@ def PrintGroupMenu():
 
 def PrintSubjectMenu():
     print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back")
-    w = int(input())
-    if w == 1:
+    w = input()
+    if w == "1":
         print('Введите код предмета')
         AddSubject(str(input()))
-    elif w == 2:
+    elif w == "2":
         print("===start===")
         for i in subjects:
             print(str(i) + '\n')
         print("===end===")
         PrintSubjectMenu()
-    elif w == 3:
+    elif w == "3":
         DeleteSubject()
-    elif w == 4:
+    elif w == "4":
         EditSubject()
-    elif w == 5:
+    elif w == "5":
         PrintMenu()
     else:
         print("error")
@@ -61,20 +61,41 @@ def PrintSubjectMenu():
 def PrintStudentMenu():
     print('1 Создать нового студента\n2 Показать всех студентов\n3 Удалить студента\n'
           '4 Редактировать даннные студента\n5 Назад')
-    w = int(input())
-    if w == 1:
+    w = input()
+    if w == "1":
         AddStudent()
-    elif w == 2:
+    elif w == "2":
         print("===start===")
         for i in students:
             print(str(i) + '\n')
         print("===end===")
         PrintStudentMenu()
-    elif w == 3:
+    elif w == "3":
         RemoveStudent()
-    elif w == 4:
+    elif w == "4":
         EditStudent()
-    elif w == 5:
+    elif w == "5":
+        PrintMenu()
+    else:
+        print("error")
+        PrintStudentMenu()
+
+def PrintBRSMenu():
+    print("1 create a new BRS point\n2 show all created BRS point\n3 remove BRS point\n4 edit BRS point\n5 go back")
+    w = input()
+    if w == "1":
+        print('Введите код студента')
+        AddBrsPoint(int(input()))
+    elif w == "2":
+        print("===start===")
+        print(students)
+        print("===end===")
+        PrintBrsPointMenu()
+    elif w == "3":
+        RemoveBrsPoint()
+    elif w == "4":
+        EditBrsPoint()
+    elif w == "5":
         PrintMenu()
     else:
         print("error")
@@ -82,18 +103,17 @@ def PrintStudentMenu():
 
 
 def PrintMenu():
-    print('''1 - GroupMenu
-2 - SubjectMenu
-3 - StudentMenu
-4 - exit''')
-    w = int(input())
-    if w == 1:
+    print("1 - GroupMenu\n2 - SubjectMenu\n3 - StudentMenu\n4 - BRSMenu\n5 - exit")
+    w = input()
+    if w == "1":
         PrintGroupMenu()
-    elif w == 2:
+    elif w == "2":
         PrintSubjectMenu()
-    elif w == 3:
+    elif w == "3":
         PrintStudentMenu()
-    elif w == 4:
+    elif w == "4":
+        PrintBRSMenu()
+    elif w == "5":
         return 0
     else:
         print("error")
