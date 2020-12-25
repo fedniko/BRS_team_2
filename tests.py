@@ -71,9 +71,13 @@ class MainStudentTestCase(unittest.TestCase):
         self.main_menu_expected1 = 'Введите код студента\nВведите ФИО студента\n' \
                                    'Введите дату рождения студента в формате ДД.ММ.ГГГГ\nВведите email студента\n' \
                                    'Введите телефон студента\nСтудент успешно создан'
+        self.main_menu_expected2 = 'Введите код студента\nСтудент успешно удален'
+        self.main_menu_expected3 = 'Введите код студента\nЧто хотите изменить?\n1 Код\n2 ФИО\n3 Дата рождения\n' \
+                                   '4 Почта\n5 Телефон\n6 Назад\nВведите новое ФИО студента\nУспешно изменено'
         self.user_menu_input = [1]
         self.user_menu_input1 = ['2', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
                                  '89142334939']
+        self.user_menu_input2 = ['Алексеев Алексей Алексеевич']
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_EditStudentError(self, mock_obj):
@@ -95,6 +99,20 @@ class MainStudentTestCase(unittest.TestCase):
             AddStudent()
         result = mock_obj.getvalue().strip()
         self.assertEqual(self.main_menu_expected1, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_RemoveStudent(self, mock_obj):
+        with patch('builtins.input', side_effect=[6969]):
+            RemoveStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected2, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_EditStudent(self, mock_obj):
+        with patch('builtins.input', side_effect=[9696]+[2]+self.user_menu_input2):
+            EditStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected3, result)
 
 
 class StudentTestCase(unittest.TestCase):

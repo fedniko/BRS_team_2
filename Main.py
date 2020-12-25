@@ -151,6 +151,10 @@ def AddStudent():
 
 
 def EditStudent():
+    # Создание для теста
+    x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    students.append(x)
+    #
     print('Введите код студента')
     a = int(input())
     for i in students:
@@ -161,18 +165,23 @@ def EditStudent():
             if w == 1:
                 print('Введите новый код студента')
                 i.code = (int(input()))
+                print('Успешно изменено')
             elif w == 2:
                 print('Введите новое ФИО студента')
                 i.fio = (str(input()))
+                print('Успешно изменено')
             elif w == 3:
                 print('Введите новую дату рождения студента')
                 i.birthdate = (str(input()))
+                print('Успешно изменено')
             elif w == 4:
                 print('Введите новую почту студента')
                 i.email = (str(input()))
+                print('Успешно изменено')
             elif w == 5:
                 print('Введите новый телефон студента')
                 i.phone = (str(input()))
+                print('Успешно изменено')
             elif w == 5:
                 if __name__ == '__main__':
                     PrintStudentMenu()
@@ -182,6 +191,7 @@ def EditStudent():
                     PrintStudentMenu()
             if __name__ == '__main__':
                 PrintStudentMenu()
+            break
     else:
         print('Студент с таким кодом не найден')
         if __name__ == '__main__':
@@ -189,6 +199,10 @@ def EditStudent():
 
 
 def RemoveStudent():
+    # Создание для теста
+    x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    students.append(x)
+    #
     print('Введите код студента')
     x = int(input())
     for i in students:
@@ -197,6 +211,7 @@ def RemoveStudent():
             print('Студент успешно удален')
             if __name__ == '__main__':
                 PrintStudentMenu()
+            break
     else:
         print('Студент с таким кодом не найден')
         if __name__ == '__main__':
