@@ -32,6 +32,7 @@ def PrintGroupMenu():
         PrintMenu()
     else:
         print("error")
+        PrintGroupMenu()
 
 
 def PrintSubjectMenu():
@@ -54,6 +55,7 @@ def PrintSubjectMenu():
         PrintMenu()
     else:
         print("error")
+        PrintSubjectMenu()
 
 
 def PrintStudentMenu():
@@ -75,6 +77,7 @@ def PrintStudentMenu():
         PrintMenu()
     else:
         print("error")
+        PrintStudentMenu()
 
 
 def PrintMenu():
@@ -93,6 +96,7 @@ def PrintMenu():
         return 0
     else:
         print("error")
+        PrintMenu()
 
 
 def AddGroup():
