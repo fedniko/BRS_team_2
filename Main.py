@@ -132,7 +132,7 @@ def AddGroup():
             PrintGroupMenu()
     else:
         x = create_Group(year, name)
-        students.append(x)
+        groups.append(x)
         print('Group created')
     if __name__ == '__main__':
         PrintGroupMenu()
@@ -175,7 +175,7 @@ def DeleteGroup():
     year = str(input())
     for i in groups:
         if i.name == name and i.year == year:
-            groupss.remove(i)
+            groups.remove(i)
     else:
         print("This group not exist!")
         PrintGroupMenu()
