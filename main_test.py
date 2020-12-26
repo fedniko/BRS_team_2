@@ -166,7 +166,7 @@ class PrintSubjectMenu_tests(unittest.TestCase):
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintSubjectMenu()
         result = mock_obj.getvalue()
-        self.assertEqual(SubjectMenu_e+'\n'+'===start===\n25 Algebra\n\n===end===\n'+SubjectMenu_e+'\n'+MainMenu_e, result.strip())
+        self.assertEqual(SubjectMenu_e+'\n'+'===start===\nКод: 25 Предмет: Algebra\n\n===end===\n'+SubjectMenu_e+'\n'+MainMenu_e, result.strip())
 
 if __name__ == '__main__':
     unittest.main()
