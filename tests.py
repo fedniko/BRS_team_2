@@ -3,7 +3,7 @@ import io
 from unittest.mock import patch
 from Student import Student
 from Factory import create_student
-from Main import EditStudent, RemoveStudent, AddStudent, PrintStudentMenu
+from Main import *
 
 
 class CreateStudentTestCase(unittest.TestCase):
@@ -82,6 +82,12 @@ class MainStudentTestCase(unittest.TestCase):
         self.user_menu_input1 = ['2', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
                                  '89142334939']
         self.user_menu_input2 = ['Алексеев Алексей Алексеевич']
+        x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+        students.append(x)
+        x = create_student('1414', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+        students.append(x)
+        x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+        students.append(x)
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_EditStudentError(self, mock_obj):

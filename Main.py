@@ -201,20 +201,23 @@ def AddStudent():
         email = str(input())
         print('Введите телефон студента')
         phone = str(input())
-        x = create_student(code, fio, birthdate, email, phone)
-        students.append(x)
-        print('Студент успешно создан')
+        try:
+            x = create_student(code, fio, birthdate, email, phone)
+            students.append(x)
+            print('Студент успешно создан')
+        except Exception:
+            print('Ошибка')
     if __name__ == '__main__':
         PrintStudentMenu()
 
 
 def EditStudent():
     # Создание для теста
-    x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
-    students.append(x)
+    # x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    # students.append(x)
     #
-    x = create_student('1414', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
-    students.append(x)
+    # x = create_student('1414', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    # students.append(x)
     #
     print('Введите код студента')
     a = int(input())
@@ -268,8 +271,8 @@ def EditStudent():
 
 def RemoveStudent():
     # Создание для теста
-    x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
-    students.append(x)
+    # x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    # students.append(x)
     #
     print('Введите код студента')
     x = int(input())
