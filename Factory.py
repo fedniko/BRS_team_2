@@ -64,5 +64,25 @@ def create_group(name, year):
 
 
 def create_BRSPoints(student: Student, subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):
-    return BRSPoints(student, subject, year, cross_section, points)
+    if student is None:
+        raise Exception('Объект класса Student не передан')
+    elif type(student) != Student:
+        raise Exception('Тип переданных данных не совпадает с классом Student ')
+    if subject is None:
+        raise Exception('Объект класса Subject не передан')
+    elif type(subject) != Subject:
+        raise Exception('Тип переданных данных не совпадает с классом Subject')
+    if year is None:
+        raise Exception('Объект класса EducationYear не передан')
+    elif type(year) != EducationYear:
+        raise Exception('Тип переданных данных не совпадает с классом EducationYear')
+    if cross_section is None:
+        raise Exception('Объект класса CrossSection не передан')
+    elif type(cross_section) != CrossSection:
+        raise Exception('Тип переданных данных не совпадает с классом CrossSection')
+    if points is None:
+        raise Exception('Объект класса int не передан')
+    elif type(points) != int:
+        raise Exception('Тип переданных данных не совпадает с классом int')
 
+    return BRSPoints(student, subject, year, cross_section, points)
