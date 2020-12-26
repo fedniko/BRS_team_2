@@ -84,7 +84,6 @@ def PrintBRSMenu():
     print("1 create a new BRS point\n2 show all created BRS point\n3 remove BRS point\n4 edit BRS point\n5 go back")
     w = input()
     if w == "1":
-        print('Введите код студента')
         AddBrsPoint()
     elif w == "2":
         print("===start===")
@@ -362,28 +361,36 @@ def AddBrsPoint():
     print('Enter crossection')
     cross = str(input())
     print('Enter subject code')
-    scode = int(input())
+    scode = str(input())
     for i in subjects:
         if i.code == scode:
-            print('Enter eduyear\nbegin')
-            beg = int(input())
-            print('end')
-            end = int(input())
-            for j in brs_points:
-                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
-                    print("This BRS point already exists!")
-                    PrintBRSMenu()
+            print('Enter code student')
+            stcode = int(input())
+            for ist in students:
+                if ist.code == stcode:
+                    print('Enter eduyear\nbegin')
+                    beg = int(input())
+                    print('end')
+                    end = int(input())
+                    for j in brs_points:
+                        if j.student.code == stcode and j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                            print("This BRS point already exists!")
+                            PrintBRSMenu()
+                    else:
+                        print("Enter BRS point")
+                        point = int(input())
+                        x = create_BRSPoints(ist, i, EducationYear(beg, end), CrossSection(cross), point)
+                        brs_points.append(x)
+                        print('BRS Point created')
             else:
-                print("Enter BRS point")
-                point = int(input())
-                x = create_BRSPoints(i, EducationYear(beg,end),CrossSection(cross),point)
-                brs_points.append(x)
-                print('BRS Point created')
+                print('Student not found')
+                PrintBRSMenu()
     else:
         print("Subject not found")
         PrintBRSMenu()
     if __name__ == '__main__':
         PrintBRSMenu()
+
 
 
 def EditBrsPoint():
