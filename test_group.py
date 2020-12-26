@@ -3,7 +3,7 @@ import io
 from unittest.mock import patch
 from Group import Group
 from Factory import create_group
-from Main import EditGroup, DeleteGroup
+from Main import *
 
 
 class Group_TestCase(unittest.TestCase):
@@ -41,26 +41,45 @@ class Create_Group_TestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             create_group('FIIT', ' ')
 
-class Main_Group_TestCase(unittest.TestCase):
+class MainStudentTestCase(unittest.TestCase):
     def setUp(self):
-        self.main_menu_expected = 'FIIT'
-        self.main_menu_expected1 = '20' \
+        self.main_menu_expected3 = 'Enter group name\nEnter Group year\nWhat need to edit?\n1 year\n2 name\nenter year\nGroup year changed!'
+        self.main_menu_expected1 = 'Enter group name\nEnter Group year\nGroup created'
+        self.main_menu_expected2 = 'Enter group name\nEnter Group year\nGroup deleted'
 
-    def test_EditGroup(self):
-        with patch('builtins.input', side_effect=main_menu_expected+main_menu_expected1) as mock_input:
-            with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
-                EditGroup()
-        result = mock_print.getvalue()
-        self.assertEqual('Введите код предмета\nПредмет с таким кодом не найден', result.strip())
+        self.user_menu_inpute1 = ['FIIT', '21' , '5', '5']
+        self.user_menu_input1 = ['IVT', '21','5' ,'5']
+        self.user_menu_input2 = ['FIIT', '20', '1','21', '5', '5']
 
-    def test_DeleteGroup(self):
-        with patch('builtins.input', side_effect=main_menu_expected+main_menu_expected1) as mock_input:
-            with patch('sys.stdout', new_callable=io.StringIO) as mock_print:
-                DeleteGroup()
-        result = mock_print.getvalue()
-        self.assertEqual('Введите код предмета\nПредмет с таким кодом не найден', result.strip())
+        x = create_group('FIIT', '20')
+        groups.append(x)
+        x = create_group('IVT', '21')
+        groups.append(x)
+        x = create_group('MAG', '19')
+        groups.append(x)
 
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_AddGroup(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_inpute1):
+            AddGroup()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected1, result)
 
-    if __name__ == "__main__":
-        unittest.main()
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_DeleteGroup(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input1):
+            DeleteGroup()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected2, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_EditGroup(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input2):
+            EditGroup()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected3, result)
+
+
+if __name__ == "__main__":
+    unittest.main()
