@@ -124,7 +124,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
-        self.assertEqual(GroupMenu_e+'\n'+'===start===\n20 FIIT\n\n===end===\n'+GroupMenu_e+'\n'+MainMenu_e, result.strip())
+        self.assertEqual(GroupMenu_e+'\n'+'===start===\nFIIT 20\n\n===end===\n'+GroupMenu_e+'\n'+MainMenu_e, result.strip())
 
 class PrintSubjectMenu_tests(unittest.TestCase):
 
