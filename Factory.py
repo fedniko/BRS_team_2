@@ -3,6 +3,7 @@ from Group import Group
 from Subject import Subject
 from datetime import date
 import time
+import re
 
 
 def create_student(code, fio, birthdate, email, phone):
@@ -44,7 +45,21 @@ def create_subject(code, name):
 
     return Subject(code, name)
 
-class Factory:
-    def create_Group(name, year):
-        return name.__init__(), year.__init__()
+
+def create_group(name, year):
+    if name == '':
+        raise Exception('Группа не может быть пустым')
+    elif not name.isupper():
+        raise Exception('Группа должен содержать только заглавные буквы')
+    elif name == ' ':
+        raise Exception('Группа предмета не может быть пробелом')
+    if year == '':
+        raise Exception('Год не может быть пустым')
+    elif year == ' ':
+        raise Exception('Год не может быть пробелом')
+    elif not year.isdigit():
+        raise Exception('Год не должен содержать буквы')
+
+
+    return Group(name, year)
 

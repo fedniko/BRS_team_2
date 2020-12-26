@@ -121,15 +121,74 @@ def PrintMenu():
 
 
 def AddGroup():
-    pass
+    print('Введите группу')
+    name = str(input())
+    print('Введите год группы')
+    year = int(input())
+    x = create_group(name, year)
+    groups.append(x)
+    print('Группа успешно создана')
+    if __name__ == '__main__':
+        PrintGroupMenu()
 
 
 def EditGroup():
-    pass
+    print('Введите год группы')
+    a = int(input())
+    for i in groups:
+        if i.year == a:
+            print('Введите название группы')
+            b = str(input())
+            for j in groups:
+                if j.name == b:
+                    print('Что хотите изменить')
+                    print("1 Название группы\n2 Год группы")
+                    w = int(input())
+                    if w == 1:
+                        i.name = (str(input()))
+                        print('Успешно изменено')
+                    elif w == 2:
+                        j.year = (int(input()))
+                        print('Успешно изменено')
+                    else:
+                        print("error cr")
+                        if __name__ == '__main__':
+                            PrintStudentMenu()
+                else:
+                    print("error name gr")
+                    if __name__ == '__main__':
+                        PrintStudentMenu()
+                    break
+            print("error")
+            if __name__ == '__main__':
+                PrintStudentMenu()
+        else:
+            print("error year")
+            if __name__ == '__main__':
+                PrintStudentMenu()
 
 
 def DeleteGroup():
-    pass
+    print('Введите год группы')
+    a = int(input())
+    for i in groups:
+        if i.year == a:
+            print('Введите название группы')
+            b = str(input())
+            for j in groups:
+                if j.name == b:
+                    groups.remove(j)
+                    print('Группа успешно удален')
+                if __name__ == '__main__':
+                    PrintGroupMenu()
+                break
+            else:
+                print("error gr")
+                if __name__ == '__main__':
+                    PrintStudentMenu()
+    print("error year")
+    if __name__ == '__main__':
+        PrintStudentMenu()
 
 
 def AddStudent():
