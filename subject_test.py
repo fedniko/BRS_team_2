@@ -3,14 +3,15 @@ import io
 from unittest.mock import patch
 from Subject import Subject
 from Factory import create_subject
-from Main import EditSubject, DeleteSubject, AddSubject
+from Main import *
 
-
+#ТестSubject
 class Subject_TestCase(unittest.TestCase):
     def test_subject(self):
         inputs_subject = Subject(code='Б1.В.01', name='Методы тестирования и верификации программных продуктов')
         self.assertEqual((inputs_subject.code, inputs_subject.name), ('Б1.В.01', 'Методы тестирования и верификации программных продуктов'))
 
+#FactoryCreate_Subject
 class Create_Subject_TestCase(unittest.TestCase):
 
     def test_create_subject(self):
@@ -45,14 +46,17 @@ class Create_Subject_TestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             create_subject('Б1.В.01', ' ')
 
+#Main_Add_Subject
+
 class Main_Add_Subject_TestCase(unittest.TestCase):
     def setUp(self):
         self.add_subject_menu_expected1 = 'Введите код предмета\nВведите название предмета\nПредмет создан'
         self.add_subject_menu_expected2 = 'Введите код предмета\nПредмет с таким кодом уже существует'
-
         self.user_menu_input1 = ['Б1.В.58']
         self.user_menu_input2 = ['Научно исследовательский семинар']
         self.user_menu_input3 = ['Б1.О.09']
+        x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+        subjects.append(x)
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_add_subject_menu_expected1(self, mock_obj):
@@ -69,6 +73,7 @@ class Main_Add_Subject_TestCase(unittest.TestCase):
         self.assertEqual(self.add_subject_menu_expected2, result)
 
 
+#Main_Edit_Subject
 
 class Main_Edit_Subject_TestCase(unittest.TestCase):
     def setUp(self):
@@ -87,6 +92,8 @@ class Main_Edit_Subject_TestCase(unittest.TestCase):
         self.user_menu_input2 = ['Python']
         self.user_menu_input3 = ['Б1.О.09']
         self.user_menu_input4 = ['Б1.О.10']
+        x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+        subjects.append(x)
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_edit_subject_menu_expected1(self, mock_obj):
@@ -110,6 +117,7 @@ class Main_Edit_Subject_TestCase(unittest.TestCase):
         self.assertEqual(self.edit_subject_menu_expected3, result)
 
 
+#Main_Delete_Subject
 
 class Main_Delete_Subject_TestCase(unittest.TestCase):
     def setUp(self):
@@ -118,6 +126,8 @@ class Main_Delete_Subject_TestCase(unittest.TestCase):
 
         self.user_menu_input1 = ['Б2.O.55']
         self.user_menu_input2 = ['Б1.О.09']
+        x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+        subjects.append(x)
 
 
     @patch('sys.stdout', new_callable=io.StringIO)

@@ -290,10 +290,6 @@ def RemoveStudent():
 
 
 def AddSubject():
-    # Создание для теста
-    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
-    subjects.append(x)
-    #
     print('Введите код предмета')
     a = str(input())
     for i in subjects:
@@ -305,17 +301,17 @@ def AddSubject():
     else:
         print('Введите название предмета')
         name = str(input())
-        subjects.append(create_subject(a, name))
-        print('Предмет создан')
-        if __name__ == '__main__':
-            PrintSubjectMenu()
+        try:
+            subjects.append(create_subject(a, name))
+            print('Предмет создан')
+        except Exception:
+            print('Код предмета должен содержать только заглавные буквы, цифры и не должен быть пустым')
+
+    if __name__ == '__main__':
+        PrintSubjectMenu()
 
 
 def EditSubject():
-    # Создание для теста
-    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
-    subjects.append(x)
-    #
     print('Введите код предмета')
     a = str(input())
     for i in subjects:
@@ -347,10 +343,6 @@ def EditSubject():
 
 
 def DeleteSubject():
-    # Создание для теста
-    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
-    subjects.append(x)
-    #
     print('Введите код предмета')
     x = str(input())
     for i in subjects:
