@@ -39,8 +39,7 @@ def PrintSubjectMenu():
     print("1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back")
     w = input()
     if w == "1":
-        print('Введите код предмета')
-        AddSubject(str(input()))
+        AddSubject()
     elif w == "2":
         print("===start===")
         for i in subjects:
@@ -263,21 +262,33 @@ def RemoveStudent():
             PrintStudentMenu()
 
 
-def AddSubject(a):
+def AddSubject():
+    # Создание для теста
+    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+    subjects.append(x)
+    #
+    print('Введите код предмета')
+    a = str(input())
     for i in subjects:
         if i.code == a:
             print("Предмет с таким кодом уже существует")
-            PrintSubjectMenu()
+            if __name__ == '__main__':
+                PrintSubjectMenu()
+            break
     else:
         print('Введите название предмета')
         name = str(input())
         subjects.append(create_subject(a, name))
         print('Предмет создан')
-    if __name__ == '__main__':
-        PrintSubjectMenu()
+        if __name__ == '__main__':
+            PrintSubjectMenu()
 
 
 def EditSubject():
+    # Создание для теста
+    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+    subjects.append(x)
+    #
     print('Введите код предмета')
     a = str(input())
     for i in subjects:
@@ -288,31 +299,43 @@ def EditSubject():
             if w == 1:
                 print('Введите новый код предмета')
                 i.code = (str(input()))
+                print('Успешно изменено')
             elif w == 2:
                 print('Введите новое название предмета')
                 i.name = (str(input()))
+                print('Успешно изменено')
             elif w == 3:
                 PrintSubjectMenu()
             else:
                 print("error")
+                if __name__ == '__main__':
+                    PrintSubjectMenu()
+            if __name__ == '__main__':
                 PrintSubjectMenu()
+            break
     else:
         print('Предмет с таким кодом не найден')
-    if __name__ == '__main__':
+        if __name__ == '__main__':
             PrintSubjectMenu()
 
 
 def DeleteSubject():
+    # Создание для теста
+    x = create_subject('Б1.О.09', 'Разработка приложений на языке Python')
+    subjects.append(x)
+    #
     print('Введите код предмета')
     x = str(input())
     for i in subjects:
         if i.code == x:
             subjects.remove(i)
             print('Предмет успешно удален')
-            PrintSubjectMenu()
+            if __name__ == '__main__':
+                PrintSubjectMenu()
+            break
     else:
         print('Предмет с таким кодом не найден')
-    if __name__ == '__main__':
+        if __name__ == '__main__':
             PrintSubjectMenu()
 
 
