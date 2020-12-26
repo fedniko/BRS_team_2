@@ -79,6 +79,7 @@ def PrintStudentMenu():
         print("error")
         PrintStudentMenu()
 
+
 def PrintBRSMenu():
     print("1 create a new BRS point\n2 show all created BRS point\n3 remove BRS point\n4 edit BRS point\n5 go back")
     w = input()
@@ -92,7 +93,7 @@ def PrintBRSMenu():
         print("===end===")
         PrintBRSMenu()
     elif w == "3":
-        RemoveBrsPoint()
+        DeleteBrsPoint()
     elif w == "4":
         EditBrsPoint()
     elif w == "5":
@@ -130,7 +131,7 @@ def AddGroup():
             print("This group already exists!")
             PrintGroupMenu()
     else:
-        x = create_Group(year, name)
+        x = create_group(year, name)
         groups.append(x)
         print('Group created')
     if __name__ == '__main__':
@@ -145,10 +146,10 @@ def EditGroup():
     for i in groups:
         if i.name == name and i.year == year:
             print("What need to edit?\n1 year\n2 name")
-            w = imput()
+            w = input()
             if w == "1":
                 print("enter year")
-                year = str(imput())
+                year = str(input())
                 for j in groups:
                     if i.name == name and i.year == year:
                         print("The group with this year and name already exists. Try again")
@@ -158,7 +159,7 @@ def EditGroup():
                     i.name = name
             elif w == "2":
                 print("enter name")
-                name = str(imput())
+                name = str(input())
                 i.name = name
     else:
         print("This group not exist!")
@@ -181,13 +182,16 @@ def DeleteGroup():
     if __name__ == '__main__':
         PrintGroupMenu()
 
+
 def AddStudent():
     print('Введите код студента')
     code = str(input())
     for i in students:
-        if i.code == code:
-            print("Студент с таким кодом уже существует")
-            PrintStudentMenu()
+        if i.code == int(code):
+            print('Студент с таким кодом уже существует')
+            if __name__ == '__main__':
+                PrintStudentMenu()
+            break
     else:
         print('Введите ФИО студента')
         fio = str(input())
@@ -205,6 +209,13 @@ def AddStudent():
 
 
 def EditStudent():
+    # Создание для теста
+    x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    students.append(x)
+    #
+    x = create_student('1414', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    students.append(x)
+    #
     print('Введите код студента')
     a = int(input())
     for i in students:
@@ -217,22 +228,29 @@ def EditStudent():
                 new_code = (int(input()))
                 for u in students:
                     if u.code == new_code:
-                        print("error")
-                        PrintStudentMenu()
+                        print("Студент с таким кодом уже существует")
+                        if __name__ == '__main__':
+                            PrintStudentMenu()
+                        break
                 else:
                     i.code = new_code
+                    print('Успешно изменено')
             elif w == 2:
                 print('Введите новое ФИО студента')
                 i.fio = (str(input()))
+                print('Успешно изменено')
             elif w == 3:
                 print('Введите новую дату рождения студента')
                 i.birthdate = (str(input()))
+                print('Успешно изменено')
             elif w == 4:
                 print('Введите новую почту студента')
                 i.email = (str(input()))
+                print('Успешно изменено')
             elif w == 5:
                 print('Введите новый телефон студента')
                 i.phone = (str(input()))
+                print('Успешно изменено')
             elif w == 5:
                 PrintStudentMenu()
             else:
@@ -241,13 +259,18 @@ def EditStudent():
                     PrintStudentMenu()
             if __name__ == '__main__':
                 PrintStudentMenu()
+            break
     else:
         print('Студент с таким кодом не найден')
     if __name__ == '__main__':
-            PrintStudentMenu()
+        PrintStudentMenu()
 
 
 def RemoveStudent():
+    # Создание для теста
+    x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
+    students.append(x)
+    #
     print('Введите код студента')
     x = int(input())
     for i in students:
@@ -256,10 +279,11 @@ def RemoveStudent():
             print('Студент успешно удален')
             if __name__ == '__main__':
                 PrintStudentMenu()
+            break
     else:
         print('Студент с таким кодом не найден')
     if __name__ == '__main__':
-            PrintStudentMenu()
+        PrintStudentMenu()
 
 
 def AddSubject():

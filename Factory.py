@@ -1,10 +1,9 @@
 from Student import Student
 from Group import Group
 from Subject import Subject
-from datetime import date
 from EducationYear import EducationYear
 from Crosssection import CrossSection
-
+from BRSPoints import BRSPoints
 import time
 
 
@@ -44,8 +43,8 @@ def create_subject(code, name):
     elif name == ' ':
         raise Exception('Название предмета не может быть пробелом')
 
-
     return Subject(code, name)
+
 
 def create_group(name, year):
     if name == '':
@@ -62,6 +61,7 @@ def create_group(name, year):
         raise Exception('Год не должен содержать буквы')
 
     return Group(name, year)
+
 
 def create_BRSPoints(subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):
     return BRSPoints(subject, year, cross_section, points)

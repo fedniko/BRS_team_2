@@ -74,6 +74,10 @@ class MainStudentTestCase(unittest.TestCase):
         self.main_menu_expected2 = 'Введите код студента\nСтудент успешно удален'
         self.main_menu_expected3 = 'Введите код студента\nЧто хотите изменить?\n1 Код\n2 ФИО\n3 Дата рождения\n' \
                                    '4 Почта\n5 Телефон\n6 Назад\nВведите новое ФИО студента\nУспешно изменено'
+        self.main_menu_expected4 = 'Введите код студента\nЧто хотите изменить?\n1 Код\n2 ФИО\n3 Дата рождения\n' \
+                                   '4 Почта\n5 Телефон\n6 Назад\nВведите новый код студента\nСтудент с таким кодом ' \
+                                   'уже существует'
+        self.main_menu_expected5 = 'Введите код студента\nСтудент с таким кодом уже существует'
         self.user_menu_input = [1]
         self.user_menu_input1 = ['2', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
                                  '89142334939']
@@ -113,6 +117,20 @@ class MainStudentTestCase(unittest.TestCase):
             EditStudent()
         result = mock_obj.getvalue().strip()
         self.assertEqual(self.main_menu_expected3, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_SameStudentEdit(self, mock_obj):
+        with patch('builtins.input', side_effect=[9696] + [1] + [1414]):
+            EditStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected4, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_SameStudentAdd(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input1):
+            AddStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected5, result)
 
 
 class StudentTestCase(unittest.TestCase):
