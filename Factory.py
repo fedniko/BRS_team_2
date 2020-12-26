@@ -49,8 +49,6 @@ def create_subject(code, name):
 def create_group(name, year):
     if name == '':
         raise Exception('Группа не может быть пустым')
-    elif not name.isupper():
-        raise Exception('Группа должен содержать только заглавные буквы')
     elif name == ' ':
         raise Exception('Группа предмета не может быть пробелом')
     if year == '':
