@@ -21,7 +21,7 @@ def PrintGroupMenu():
     elif w == "2":
         print("===start===")
         for i in groups:
-            print(str(i.year) + ' ' + str(i.name) + '\n')
+            print(str(i.name) + ' ' + str(i.year) + '\n')
         print("===end===")
         PrintGroupMenu()
     elif w == "3":
@@ -128,9 +128,10 @@ def AddGroup():
     for i in groups:
         if i.name == name and i.year == year:
             print("This group already exists!")
-            PrintGroupMenu()
+            if __name__ == '__main__':
+                PrintGroupMenu()
     else:
-        x = create_group(year, name)
+        x = create_group(name, year)
         groups.append(x)
         print('Group created')
     if __name__ == '__main__':
@@ -152,17 +153,24 @@ def EditGroup():
                 for j in groups:
                     if i.name == name and i.year == year:
                         print("The group with this year and name already exists. Try again")
-                        PrintGroupMenu()
+                        if __name__ == '__main__':
+                            PrintGroupMenu()
+                        break
                 else:
-                    i.year = year
                     i.name = name
+                    i.year = year
+                    print("Group year changed!")
+                    if __name__ == '__main__':
+                        PrintGroupMenu()
+                    break
             elif w == "2":
                 print("enter name")
                 name = str(input())
                 i.name = name
+                print("Group name changed!")
+                PrintGroupMenu()
     else:
         print("This group not exist!")
-        PrintGroupMenu()
     if __name__ == '__main__':
         PrintGroupMenu()
 
@@ -175,6 +183,10 @@ def DeleteGroup():
     for i in groups:
         if i.name == name and i.year == year:
             groups.remove(i)
+            print('Group deleted')
+            if __name__ == '__main__':
+                PrintGroupMenu()
+            break
     else:
         print("This group not exist!")
         PrintGroupMenu()
