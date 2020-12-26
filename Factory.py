@@ -63,6 +63,6 @@ def create_group(name, year):
     return Group(name, year)
 
 
-def create_BRSPoints(subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):
-    return BRSPoints(subject, year, cross_section, points)
+def create_BRSPoints(student: Student, subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):
+    return BRSPoints(student, subject, year, cross_section, points)
 
