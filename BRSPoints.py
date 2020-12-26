@@ -9,3 +9,7 @@ class BRSPoints:
         self.year = year
         self.cross_section = cross_section
         self.points = points
+
+    def __str__(self):
+        template = 'Предмет: {} Год: {} Срез: {} Баллы: {}'
+        return template.format(self.subject.name, str(self.year.beginYear)+'-'+str(self.year.endYear), self.cross_section.name, self.points, 

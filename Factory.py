@@ -2,8 +2,10 @@ from Student import Student
 from Group import Group
 from Subject import Subject
 from datetime import date
+from EducationYear import EducationYear
+from Crosssection import CrossSection
+
 import time
-import re
 
 
 def create_student(code, fio, birthdate, email, phone):
@@ -45,7 +47,6 @@ def create_subject(code, name):
 
     return Subject(code, name)
 
-
 def create_group(name, year):
     if name == '':
         raise Exception('Группа не может быть пустым')
@@ -60,6 +61,8 @@ def create_group(name, year):
     elif not year.isdigit():
         raise Exception('Год не должен содержать буквы')
 
-
     return Group(name, year)
+
+def create_BRSPoints(subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):
+    return BRSPoints(subject, year, cross_section, points)
 

@@ -85,12 +85,13 @@ def PrintBRSMenu():
     w = input()
     if w == "1":
         print('Введите код студента')
-        AddBrsPoint(int(input()))
+        AddBrsPoint()
     elif w == "2":
         print("===start===")
-        print(students)
+        for i in brs_points:
+            print(str(i) + '\n')
         print("===end===")
-        PrintBrsPointMenu()
+        PrintBRSMenu()
     elif w == "3":
         RemoveBrsPoint()
     elif w == "4":
@@ -99,7 +100,7 @@ def PrintBRSMenu():
         PrintMenu()
     else:
         print("error")
-        PrintStudentMenu()
+        PrintBRSMenu()
 
 
 def PrintMenu():
@@ -121,99 +122,90 @@ def PrintMenu():
 
 
 def AddGroup():
-    print('Введите группу')
+    print('Enter group name')
     name = str(input())
-    print('Введите год группы')
-    year = int(input())
-    x = create_group(name, year)
-    groups.append(x)
-    print('Группа успешно создана')
+    print('Enter Group year')
+    year = str(input())
+    for i in groups:
+        if i.name == name and i.year == year:
+            print("This group already exists!")
+            PrintGroupMenu()
+    else:
+        x = create_Group(year, name)
+        students.append(x)
+        print('Group created')
     if __name__ == '__main__':
         PrintGroupMenu()
 
 
 def EditGroup():
-    print('Введите год группы')
-    a = int(input())
+    print('Enter group name')
+    name = str(input())
+    print('Enter Group year')
+    year = str(input())
     for i in groups:
-        if i.year == a:
-            print('Введите название группы')
-            b = str(input())
-            for j in groups:
-                if j.name == b:
-                    print('Что хотите изменить')
-                    print("1 Название группы\n2 Год группы")
-                    w = int(input())
-                    if w == 1:
-                        i.name = (str(input()))
-                        print('Успешно изменено')
-                    elif w == 2:
-                        j.year = (int(input()))
-                        print('Успешно изменено')
-                    else:
-                        print("error cr")
-                        if __name__ == '__main__':
-                            PrintStudentMenu()
+        if i.name == name and i.year == year:
+            print("What need to edit?\n1 year\n2 name")
+            w = imput()
+            if w == "1":
+                print("enter year")
+                year = str(imput())
+                for j in groups:
+                    if i.name == name and i.year == year:
+                        print("The group with this year and name already exists. Try again")
+                        PrintGroupMenu()
                 else:
-                    print("error name gr")
-                    if __name__ == '__main__':
-                        PrintStudentMenu()
-                    break
-            print("error")
-            if __name__ == '__main__':
-                PrintStudentMenu()
-        else:
-            print("error year")
-            if __name__ == '__main__':
-                PrintStudentMenu()
+                    i.year = year
+                    i.name = name
+            elif w == "2":
+                print("enter name")
+                name = str(imput())
+                i.name = name
+    else:
+        print("This group not exist!")
+        PrintGroupMenu()
+    if __name__ == '__main__':
+        PrintGroupMenu()
 
 
 def DeleteGroup():
-    print('Введите год группы')
-    a = int(input())
+    print('Enter group name')
+    name = str(input())
+    print('Enter Group year')
+    year = str(input())
     for i in groups:
-        if i.year == a:
-            print('Введите название группы')
-            b = str(input())
-            for j in groups:
-                if j.name == b:
-                    groups.remove(j)
-                    print('Группа успешно удален')
-                if __name__ == '__main__':
-                    PrintGroupMenu()
-                break
-            else:
-                print("error gr")
-                if __name__ == '__main__':
-                    PrintStudentMenu()
-    print("error year")
+        if i.name == name and i.year == year:
+            groupss.remove(i)
+    else:
+        print("This group not exist!")
+        PrintGroupMenu()
     if __name__ == '__main__':
-        PrintStudentMenu()
-
+        PrintGroupMenu()
 
 def AddStudent():
     print('Введите код студента')
     code = str(input())
-    print('Введите ФИО студента')
-    fio = str(input())
-    print('Введите дату рождения студента в формате ДД.ММ.ГГГГ')
-    birthdate = str(input())
-    print('Введите email студента')
-    email = str(input())
-    print('Введите телефон студента')
-    phone = str(input())
-    x = create_student(code, fio, birthdate, email, phone)
-    students.append(x)
-    print('Студент успешно создан')
+    for i in students:
+        if i.code == code:
+            print("Студент с таким кодом уже существует")
+            PrintStudentMenu()
+    else:
+        print('Введите ФИО студента')
+        fio = str(input())
+        print('Введите дату рождения студента в формате ДД.ММ.ГГГГ')
+        birthdate = str(input())
+        print('Введите email студента')
+        email = str(input())
+        print('Введите телефон студента')
+        phone = str(input())
+        x = create_student(code, fio, birthdate, email, phone)
+        students.append(x)
+        print('Студент успешно создан')
     if __name__ == '__main__':
         PrintStudentMenu()
 
 
 def EditStudent():
-    # Создание для теста
-    x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
-    students.append(x)
-    #
     print('Введите код студента')
     a = int(input())
     for i in students:
@@ -223,45 +215,40 @@ def EditStudent():
             w = int(input())
             if w == 1:
                 print('Введите новый код студента')
-                i.code = (int(input()))
-                print('Успешно изменено')
+                new_code = (int(input()))
+                for u in students:
+                    if u.code == new_code:
+                        print("error")
+                        PrintStudentMenu()
+                else:
+                    i.code = new_code
             elif w == 2:
                 print('Введите новое ФИО студента')
                 i.fio = (str(input()))
-                print('Успешно изменено')
             elif w == 3:
                 print('Введите новую дату рождения студента')
                 i.birthdate = (str(input()))
-                print('Успешно изменено')
             elif w == 4:
                 print('Введите новую почту студента')
                 i.email = (str(input()))
-                print('Успешно изменено')
             elif w == 5:
                 print('Введите новый телефон студента')
                 i.phone = (str(input()))
-                print('Успешно изменено')
             elif w == 5:
-                if __name__ == '__main__':
-                    PrintStudentMenu()
+                PrintStudentMenu()
             else:
                 print("error")
                 if __name__ == '__main__':
                     PrintStudentMenu()
             if __name__ == '__main__':
                 PrintStudentMenu()
-            break
     else:
         print('Студент с таким кодом не найден')
-        if __name__ == '__main__':
+    if __name__ == '__main__':
             PrintStudentMenu()
 
 
 def RemoveStudent():
-    # Создание для теста
-    x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567')
-    students.append(x)
-    #
     print('Введите код студента')
     x = int(input())
     for i in students:
@@ -270,20 +257,22 @@ def RemoveStudent():
             print('Студент успешно удален')
             if __name__ == '__main__':
                 PrintStudentMenu()
-            break
     else:
         print('Студент с таким кодом не найден')
-        if __name__ == '__main__':
+    if __name__ == '__main__':
             PrintStudentMenu()
 
 
 def AddSubject(a):
-    code = a
-    print('Введите название предмета')
-    name = str(input())
-    x = create_subject(code, name)
-    subjects.append(x)
-    print('Предмет создан')
+    for i in subjects:
+        if i.code == a:
+            print("Предмет с таким кодом уже существует")
+            PrintSubjectMenu()
+    else:
+        print('Введите название предмета')
+        name = str(input())
+        subjects.append(create_subject(a, name))
+        print('Предмет создан')
     if __name__ == '__main__':
         PrintSubjectMenu()
 
@@ -306,13 +295,10 @@ def EditSubject():
                 PrintSubjectMenu()
             else:
                 print("error")
-                if __name__ == '__main__':
-                    PrintSubjectMenu()
-            if __name__ == '__main__':
                 PrintSubjectMenu()
     else:
         print('Предмет с таким кодом не найден')
-        if __name__ == '__main__':
+    if __name__ == '__main__':
             PrintSubjectMenu()
 
 
@@ -323,24 +309,114 @@ def DeleteSubject():
         if i.code == x:
             subjects.remove(i)
             print('Предмет успешно удален')
-            if __name__ == '__main__':
-                PrintSubjectMenu()
+            PrintSubjectMenu()
     else:
         print('Предмет с таким кодом не найден')
-        if __name__ == '__main__':
+    if __name__ == '__main__':
             PrintSubjectMenu()
 
 
 def AddBrsPoint():
-    pass
+    print('Enter crossection')
+    cross = str(input())
+    print('Enter subject code')
+    scode = int(input())
+    for i in subjects:
+        if i.code == scode:
+            print('Enter eduyear\nbegin')
+            beg = int(input())
+            print('end')
+            end = int(input())
+            for j in brs_points:
+                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                    print("This BRS point already exists!")
+                    PrintBRSMenu()
+            else:
+                print("Enter BRS point")
+                point = int(input())
+                x = create_BRSPoints(i, EducationYear(beg,end),CrossSection(cross),point)
+                brs_points.append(x)
+                print('BRS Point created')
+    else:
+        print("Subject not found")
+        PrintBRSMenu()
+    if __name__ == '__main__':
+        PrintBRSMenu()
 
 
 def EditBrsPoint():
-    pass
+    print('Enter crossection')
+    cross = str(input())
+    print('Enter subject code')
+    scode = int(input())
+    for i in subjects:
+        if i.code == scode:
+            print('Enter eduyear\nbegin')
+            beg = int(input())
+            print('end')
+            end = int(input())
+            for j in brs_points:
+                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                    print("1 edit subject code\n2 crosssection\n3 begin year\n4 end year\n5 point")
+                    inw = input()
+                    if inw == "1":
+                        print("enter subject code")
+                        scode = int(input())
+                        for u in subjects:
+                            if u.code == scode:
+                                j.subject.code = scode
+                        else:
+                            print("subject not found")
+                    elif inw == "2":
+                        print("enter crosssection")
+                        cross = str(input())
+                        j.cross_section.name = cross
+                    elif inw == "3":
+                        print('Enter begin year')
+                        beg = int(input())
+                        j.year.beginYear = beg
+                    elif inw == "4":
+                        print('Enter end year')
+                        end = int(input())
+                        j.year.endYear = end
+                    elif inw == "5":
+                        print("enter point")
+                        point = int(input())
+                        j.points = point
+                    else:
+                        print("error")
+            else:
+                print("BRS point not found")
+    else:
+        print("Subject not found")
+        PrintBRSMenu()
+    if __name__ == '__main__':
+        PrintBRSMenu()
 
 
 def DeleteBrsPoint():
-    pass
+    print('Enter crossection')
+    cross = str(input())
+    print('Enter subject code')
+    scode = int(input())
+    for i in subjects:
+        if i.code == scode:
+            print('Enter eduyear\nbegin')
+            beg = int(input())
+            print('end')
+            end = int(input())
+            for j in brs_points:
+                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                    brs_points.remove(j)
+                    print("BRS deleted")
+                    PrintBRSMenu()
+            else:
+                print("BRS point not found")
+    else:
+        print("Subject not found")
+        PrintBRSMenu()
+    if __name__ == '__main__':
+        PrintBRSMenu()
 
 
 if __name__ == '__main__':
