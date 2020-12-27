@@ -394,63 +394,66 @@ def AddBrsPoint():
                         x = create_BRSPoints(ist, i, EducationYear(beg, end), CrossSection(cross), point)
                         brs_points.append(x)
                         print('BRS Point created')
-            else:
-                print('Student not found')
-                PrintBRSMenu()
-    else:
-        print("Subject not found")
-        PrintBRSMenu()
+                else:
+                    print('Student not found')
+                    PrintBRSMenu()
+        else:
+            print("Subject not found")
+            PrintBRSMenu()
     if __name__ == '__main__':
         PrintBRSMenu()
-
 
 
 def EditBrsPoint():
     print('Enter crossection')
     cross = str(input())
     print('Enter subject code')
-    scode = int(input())
+    scode = str(input())
     for i in subjects:
         if i.code == scode:
-            print('Enter eduyear\nbegin')
-            beg = int(input())
-            print('end')
-            end = int(input())
-            for j in brs_points:
-                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
-                    print("1 edit subject code\n2 crosssection\n3 begin year\n4 end year\n5 point")
-                    inw = input()
-                    if inw == "1":
-                        print("enter subject code")
-                        scode = int(input())
-                        for u in subjects:
-                            if u.code == scode:
-                                j.subject.code = scode
-                        else:
-                            print("subject not found")
-                    elif inw == "2":
-                        print("enter crosssection")
-                        cross = str(input())
-                        j.cross_section.name = cross
-                    elif inw == "3":
-                        print('Enter begin year')
-                        beg = int(input())
-                        j.year.beginYear = beg
-                    elif inw == "4":
-                        print('Enter end year')
-                        end = int(input())
-                        j.year.endYear = end
-                    elif inw == "5":
-                        print("enter point")
-                        point = int(input())
-                        j.points = point
-                    else:
-                        print("error")
-            else:
-                print("BRS point not found")
-    else:
-        print("Subject not found")
-        PrintBRSMenu()
+            print('Enter code student')
+            stcode = int(input())
+            for ist in students:
+                if ist.code == stcode:
+                    print('Enter eduyear\nbegin')
+                    beg = int(input())
+                    print('end')
+                    end = int(input())
+                    for j in brs_points:
+                        if j.student.code == stcode and j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                            print("1 edit subject code\n2 crosssection\n3 begin year\n4 end year\n5 point")
+                            inw = input()
+                            if inw == "1":
+                                print("enter subject code")
+                                scode = int(input())
+                                for u in subjects:
+                                    if u.code == scode:
+                                        j.subject.code = scode
+                                else:
+                                    print("subject not found")
+                            elif inw == "2":
+                                print("enter crosssection")
+                                cross = str(input())
+                                j.cross_section.name = cross
+                            elif inw == "3":
+                                print('Enter begin year')
+                                beg = int(input())
+                                j.year.beginYear = beg
+                            elif inw == "4":
+                                print('Enter end year')
+                                end = int(input())
+                                j.year.endYear = end
+                            elif inw == "5":
+                                print("enter point")
+                                point = int(input())
+                                j.points = point
+                            else:
+                                print("error")
+                else:
+                    print("BRS point not found")
+        else:
+            print("Subject not found")
+            PrintBRSMenu()
     if __name__ == '__main__':
         PrintBRSMenu()
 
