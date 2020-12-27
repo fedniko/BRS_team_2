@@ -462,23 +462,27 @@ def DeleteBrsPoint():
     print('Enter crossection')
     cross = str(input())
     print('Enter subject code')
-    scode = int(input())
+    scode = str(input())
     for i in subjects:
         if i.code == scode:
-            print('Enter eduyear\nbegin')
-            beg = int(input())
-            print('end')
-            end = int(input())
-            for j in brs_points:
-                if j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
-                    brs_points.remove(j)
-                    print("BRS deleted")
-                    PrintBRSMenu()
-            else:
-                print("BRS point not found")
-    else:
-        print("Subject not found")
-        PrintBRSMenu()
+            print('Enter code student')
+            stcode = int(input())
+            for ist in students:
+                if ist.code == stcode:
+                    print('Enter eduyear\nbegin')
+                    beg = int(input())
+                    print('end')
+                    end = int(input())
+                    for j in brs_points:
+                        if j.student.code == stcode and j.subject.code == scode and j.cross_section.name == cross and j.year.beginYear == beg and j.year.endYear == end:
+                            brs_points.remove(j)
+                            print("BRS deleted")
+                            PrintBRSMenu()
+                    else:
+                        print("BRS point not found")
+        else:
+            print("Subject not found")
+            PrintBRSMenu()
     if __name__ == '__main__':
         PrintBRSMenu()
 
