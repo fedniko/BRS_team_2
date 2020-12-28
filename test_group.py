@@ -15,7 +15,7 @@ class Create_Group_TestCase(unittest.TestCase):
 
     def test_create_group(self):
         inputs_group = create_group('FIIT', '20')
-        self.assertEqual((inputs_group.name, inputs_group.year), ('FIIT', '20'))
+        self.assertEqual((inputs_group.name, inputs_group.year), ('FIIT', 20))
 
     def test_create_group_name1(self):
         inputs_group = create_group('FIIT', '20')
@@ -31,7 +31,7 @@ class Create_Group_TestCase(unittest.TestCase):
 
     def test_create_group_year1(self):
         inputs_group = create_group('FIIT', '20')
-        self.assertEqual(inputs_group.year, '20')
+        self.assertEqual(inputs_group.year, 20)
 
     def test_create_student_year2(self):
         with self.assertRaises(Exception):
@@ -41,11 +41,16 @@ class Create_Group_TestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             create_group('FIIT', ' ')
 
+    def test_create_student_year3(self):
+        with self.assertRaises(Exception):
+            create_group('FIIT', 'FIIT')
+
 class MainStudentTestCase(unittest.TestCase):
     def setUp(self):
-        self.main_menu_expected3 = 'Enter group name\nEnter Group year\nWhat need to edit?\n1 year\n2 name\nenter year\nGroup year changed!'
-        self.main_menu_expected1 = 'Enter group name\nEnter Group year\nGroup created'
-        self.main_menu_expected2 = 'Enter group name\nEnter Group year\nGroup deleted'
+        self.main_menu_expected3 = 'Введите название группы\nВведите год группы\nЧто нужно редактировать? ' \
+                                   '\n1 Название группы \n2 Год группы\nВведите год\nГод группы изменился!'
+        self.main_menu_expected1 = 'Введите название группы\nВведите год группы\nГруппа создана!'
+        self.main_menu_expected2 = 'Введите название группы\nВведите год группы\nГруппа удалена!'
 
         self.user_menu_inpute1 = ['FIIT', '21' , '5', '5']
         self.user_menu_input1 = ['IVT', '21','5' ,'5']
