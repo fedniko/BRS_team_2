@@ -151,32 +151,49 @@ def EditGroup():
         if i.name == name and i.year == int(year):
             print("Что нужно редактировать? \n1 Название группы \n2 Год группы")
             w = input()
-            if w == "1":
+            if w == "2":
                 print("Введите год")
                 year = str(input())
                 for j in groups:
-                    if i.name == name and i.year == int(year):
-                        print("Группа с этим годом и названием уже существует. Попробуйте снова")
+                    if j.name == name and j.year == int(year):
+                        print("Группа с этим годом уже существует. Попробуйте снова")
                         if __name__ == '__main__':
                             PrintGroupMenu()
                         break
                 else:
-                    i.name = name
-                    i.year = year
+                    j.name = name
+                    j.year = year
                     print("Год группы изменился!")
                     if __name__ == '__main__':
                         PrintGroupMenu()
                     break
-            elif w == "2":
+            elif w == "1":
                 print("Введите название")
                 name = str(input())
-                i.name = name
-                print("Название группы изменено!")
-                PrintGroupMenu()
+                for s in groups:
+                    if s.name == name and s.year == int(year):
+                        print("Группа с этим названием уже существует. Попробуйте снова")
+                        if __name__ == '__main__':
+                            PrintGroupMenu()
+                        break
+                else:
+                    s.name = name
+                    s.year = year
+                    print("Название группы изменено!")
+                    if __name__ == '__main__':
+                        PrintGroupMenu()
+                    break
+            else:
+                print("error")
+                if __name__ == '__main__':
+                    PrintStudentMenu()
+            if __name__ == '__main__':
+                PrintStudentMenu()
+            break
     else:
         print("Такой группы не существует!")
-    if __name__ == '__main__':
-        PrintGroupMenu()
+        if __name__ == '__main__':
+            PrintGroupMenu()
 
 
 def DeleteGroup():
@@ -192,10 +209,9 @@ def DeleteGroup():
                 PrintGroupMenu()
             break
     else:
-        print("Группа удалена!")
-        PrintGroupMenu()
-    if __name__ == '__main__':
-        PrintGroupMenu()
+        print("Такой группы не существует!!")
+        if __name__ == '__main__':
+            PrintGroupMenu()
 
 
 def AddStudent():

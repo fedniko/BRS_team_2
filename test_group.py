@@ -54,7 +54,7 @@ class MainStudentTestCase(unittest.TestCase):
 
         self.user_menu_inpute1 = ['FIIT', '21' , '5', '5']
         self.user_menu_input1 = ['IVT', '21','5' ,'5']
-        self.user_menu_input2 = ['FIIT', '20', '1','21', '5', '5']
+        self.user_menu_input2 = ['FIIT', '20', '2','19', '5', '5']
 
         x = create_group('FIIT', '20')
         groups.append(x)
