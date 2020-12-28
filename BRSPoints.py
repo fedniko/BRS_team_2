@@ -14,5 +14,5 @@ class BRSPoints:
 
     def __str__(self):
         template = 'Student: {} Subject: {} Year: {} Srez: {} Points: {}'
-        return template.format(self.student.fio, self.subject.name, str(self.year.beginYear) + '-' + str(self.year.endYear),
+        return template.format(self.student.fio + ' - ' + str(self.student.group), self.subject.name, str(self.year.beginYear) + '-' + str(self.year.endYear),
                                self.cross_section.name, self.points)
