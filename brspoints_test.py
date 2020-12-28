@@ -215,3 +215,16 @@ class CreateBRSPointsTestCase(unittest.TestCase):
         cross_section = CrossSection('Первый к/с')
         with self.assertRaises(Exception):
             create_BRSPoints(student, subject, education_year, cross_section, '')
+            
+class BRSPointsTestCase(unittest.TestCase):
+    def test_create_brspoints(self):
+        student = Student(2, 'Иванов Максим Валерианович', '21.01.1998', 'ivanovmksm98@gmail.com', '89142673402', Group('М-ФИИТ', 20))
+        education_year = EducationYear(2020, 2022)
+        subject = Subject('1', 'Методы тестирования и верификации программных продуктов')
+        cross_section = CrossSection('Первый к/с')
+        format_name = BRSPoints(student = student, subject = subject, year = education_year, cross_section = cross_section, points = 80)
+        self.assertEqual((str(format_name.student.fio) + ", " + str(format_name.subject.name) + ", " + str(
+            format_name.year.beginYear) + ", " + str(
+            format_name.year.endYear) + ", " + str(format_name.cross_section.name) + ", " + str(format_name.points)),
+                         (
+                             'Иванов Максим Валерианович, Методы тестирования и верификации программных продуктов, 2020, 2022, Первый к/с, 80'))
