@@ -7,7 +7,7 @@ from BRSPoints import BRSPoints
 import time
 
 
-def create_student(code, fio, birthdate, email, phone):
+def create_student(code, fio, birthdate, email, phone, group):
     if code == '':
         raise Exception('Код не может быть пустым')
     elif not code.isdigit():
@@ -28,7 +28,7 @@ def create_student(code, fio, birthdate, email, phone):
         except ValueError:
             raise ValueError('Введите дату в формате ДД.ММ.ГГГГ')
 
-    return Student(code=new_code, fio=fio, birthdate=birthdate, email=email, phone=phone)
+    return Student(code=new_code, fio=fio, birthdate=birthdate, email=email, phone=phone, group=group)
 
 
 def create_subject(code, name):
