@@ -23,7 +23,7 @@ groups.append(dg)
 sg=Subject(25,"Algebra")
 subjects.append(sg)
 MainMenu_e="1 - GroupMenu\n2 - SubjectMenu\n3 - StudentMenu\n4 - BRSMenu\n5 - exit"
-GroupMenu_e='1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group\n5 go back'
+GroupMenu_e='1 Создать новую группу \n2 Показать все созданные группы \n3 Удалить группу \n4 Изменить группу \n5 Назад'
 SubjectMenu_e='1 create a new subject\n2 show all created subjects\n3 delete Subject\n4 edit subject\n5 go back'
 error_e='error'
 
@@ -124,7 +124,7 @@ class PrintGroupMenu_tests(unittest.TestCase):
         with patch('builtins.input', side_effect=input) as mock_input:
              PrintGroupMenu()
         result = mock_obj.getvalue()
-        self.assertEqual(GroupMenu_e+'\n'+'===start===\nFIIT 20\n\n===end===\n'+GroupMenu_e+'\n'+MainMenu_e, result.strip())
+        self.assertEqual(GroupMenu_e+'\n'+'===start===\nГруппа: FIIT-20\n\n===end===\n'+GroupMenu_e+'\n'+MainMenu_e, result.strip())
 
 class PrintSubjectMenu_tests(unittest.TestCase):
 
