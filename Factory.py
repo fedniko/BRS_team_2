@@ -48,15 +48,17 @@ def create_subject(code, name):
 
 def create_group(name, year):
     if name == '':
-        raise Exception('Группа не может быть пустым')
+        raise Exception('Название группы не может быть пустым')
     elif name == ' ':
-        raise Exception('Группа предмета не может быть пробелом')
+        raise Exception('Название группы предмета не может быть пробелом')
+    elif not name.isupper():
+        raise Exception('Название группы должен содержать только заглавные буквы')
     if year == '':
-        raise Exception('Год не может быть пустым')
+        raise Exception('Год группы не может быть пустым')
     elif year == ' ':
-        raise Exception('Год не может быть пробелом')
+        raise Exception('Год группы не может быть пробелом')
     elif not year.isdigit():
-        raise Exception('Год не должен содержать буквы')
+        raise Exception('Год группы не должен содержать буквы')
     else:
         new_year = int(year)
 
