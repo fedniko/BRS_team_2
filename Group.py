@@ -4,5 +4,5 @@ class Group:
         self.year = year
 
     def __str__(self):
-        template = 'Группа: {} Год: {}'
+        template = 'Группа: {}-{}'
         return template.format(self.name, self.year)
