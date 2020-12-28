@@ -57,8 +57,10 @@ def create_group(name, year):
         raise Exception('Год не может быть пробелом')
     elif not year.isdigit():
         raise Exception('Год не должен содержать буквы')
+    else:
+        new_year = int(year)
 
-    return Group(name, year)
+    return Group(name, new_year)
 
 
 def create_BRSPoints(student: Student, subject: Subject, year: EducationYear, cross_section: CrossSection, points: int):

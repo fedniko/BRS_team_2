@@ -11,5 +11,6 @@ class Student:
         self.group = group
 
     def __str__(self):
-        template = 'Код: {} ФИО: {} Дата: {} Почта: {} Телефон: {} Группа: {}'
-        return template.format(self.code, self.fio, self.birthdate, self.email, self.phone, self.group.name)
+        template = 'Код: {} ФИО: {} Дата: {} Почта: {} Телефон: {} Группа: {}-{}'
+        return template.format(self.code, self.fio, self.birthdate, self.email, self.phone, self.group.name,
+                               self.group.year)

@@ -224,8 +224,8 @@ def AddStudent():
                     print('Студент успешно создан')
                 except Exception:
                     print('Ошибка')
-        else:
-            print('Группа не найдена')
+            else:
+                print('Группа не найдена')
     if __name__ == '__main__':
         PrintStudentMenu()
 
@@ -323,7 +323,7 @@ def AddSubject():
     print('Введите код предмета')
     a = str(input())
     for i in subjects:
-        if i.code == a:
+        if i.code == int(a):
             print("Предмет с таким кодом уже существует")
             if __name__ == '__main__':
                 PrintSubjectMenu()
