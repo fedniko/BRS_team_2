@@ -323,7 +323,7 @@ def AddSubject():
     print('Введите код предмета')
     a = str(input())
     for i in subjects:
-        if i.code == int(a):
+        if i.code == a:
             print("Предмет с таким кодом уже существует")
             if __name__ == '__main__':
                 PrintSubjectMenu()
