@@ -72,6 +72,14 @@ class MainStudentTestCase(unittest.TestCase):
                                    'Введите дату рождения студента в формате ДД.ММ.ГГГГ\nВведите email студента\n' \
                                    'Введите телефон студента\nВведите название группы студента\n' \
                                    'Введите год группы студента\nСтудент успешно создан'
+        self.main_menu_expected6 = 'Введите код студента\nВведите ФИО студента\n' \
+                                   'Введите дату рождения студента в формате ДД.ММ.ГГГГ\nВведите email студента\n' \
+                                   'Введите телефон студента\nВведите название группы студента\n' \
+                                   'Введите год группы студента\nВведен некорректный email'
+        self.main_menu_expected7 = 'Введите код студента\nВведите ФИО студента\n' \
+                                   'Введите дату рождения студента в формате ДД.ММ.ГГГГ\nВведите email студента\n' \
+                                   'Введите телефон студента\nВведите название группы студента\n' \
+                                   'Введите год группы студента\nВведен некорректный телефон'
         self.main_menu_expected2 = 'Введите код студента\nСтудент успешно удален'
         self.main_menu_expected3 = 'Введите код студента\nЧто хотите изменить?\n1 Код\n2 ФИО\n3 Дата рождения\n' \
                                    '4 Почта\n5 Телефон\n6 Группа\n7 Назад\nВведите новое ФИО студента\nУспешно изменено'
@@ -82,14 +90,18 @@ class MainStudentTestCase(unittest.TestCase):
         self.user_menu_input = [1]
         self.user_menu_input1 = ['2', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
                                  '89142334939', 'ФИИТ', 14]
+        self.user_menu_input3 = ['3', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmailcom',
+                                 '89142334939', 'ФИИТ', 14]
+        self.user_menu_input4 = ['4', 'Федоров Николай Иванович', '22.05.1996', 'fednik2011@gmail.com',
+                                 '8914233493', 'ФИИТ', 14]
         self.user_menu_input2 = ['Алексеев Алексей Алексеевич']
         y = create_group('ФИИТ', '14')
         groups.append(y)
-        x = create_student('9696', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567', 'ФИИТ-14')
+        x = create_student('9696', 'Иванов Иван', '01.01.2001', 'ivanov@gmail.com', '89241234567', 'ФИИТ-14')
         students.append(x)
-        x = create_student('1414', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567', 'ФИИТ-14')
+        x = create_student('1414', 'Иванов Иван', '01.01.2001', 'ivanov@gmail.com', '89241234567', 'ФИИТ-14')
         students.append(x)
-        x = create_student('6969', 'Иванов Иван', '01.01.2001', 'a@gmal.com', '89241234567', 'ФИИТ-14')
+        x = create_student('6969', 'Иванов Иван', '01.01.2001', 'ivanov@gmail.com', '89241234567', 'ФИИТ-14')
         students.append(x)
 
     @patch('sys.stdout', new_callable=io.StringIO)
@@ -112,6 +124,20 @@ class MainStudentTestCase(unittest.TestCase):
             AddStudent()
         result = mock_obj.getvalue().strip()
         self.assertEqual(self.main_menu_expected1, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_AddStudentEmailError(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input3):
+            AddStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected6, result)
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_AddStudentPhoneError(self, mock_obj):
+        with patch('builtins.input', side_effect=self.user_menu_input4):
+            AddStudent()
+        result = mock_obj.getvalue().strip()
+        self.assertEqual(self.main_menu_expected7, result)
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_RemoveStudent(self, mock_obj):

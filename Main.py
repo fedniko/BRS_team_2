@@ -4,6 +4,7 @@ from Group import Group
 from Subject import Subject
 from Factory import *
 from Student import Student
+from Checker import *
 
 groups = []
 subjects = []
@@ -219,7 +220,17 @@ def AddStudent():
         for j in groups:
             if j.name == grno and j.year == grgo:
                 try:
-                    x = create_student(code, fio, birthdate, email, phone, j)
+                    if check_email(email):
+                        correctemail = email
+                    else:
+                        print('Введен некорректный email')
+                        break
+                    if check_phone(phone):
+                        correctphone = phone
+                    else:
+                        print('Введен некорректный телефон')
+                        break
+                    x = create_student(code, fio, birthdate, correctemail, correctphone, j)
                     students.append(x)
                     print('Студент успешно создан')
                 except Exception:
