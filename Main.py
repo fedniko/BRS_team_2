@@ -15,14 +15,14 @@ students = []
 
 
 def PrintGroupMenu():
-    print("1 create a new Group\n2 show all created groups\n3 delete group\n4 edit group\n5 go back")
+    print("1 Создать новую группу \n2 Показать все созданные группы \n3 Удалить группу \n4 Изменить группу \n5 Назад")
     w = input()
     if w == "1":
         AddGroup()
     elif w == "2":
         print("===start===")
         for i in groups:
-            print(str(i.name) + ' ' + str(i.year) + '\n')
+            print(str(i) + '\n')
         print("===end===")
         PrintGroupMenu()
     elif w == "3":
@@ -122,74 +122,77 @@ def PrintMenu():
 
 
 def AddGroup():
-    print('Enter group name')
+    print('Введите название группы')
     name = str(input())
-    print('Enter Group year')
+    print('Введите год группы')
     year = str(input())
     for i in groups:
-        if i.name == name and i.year == year:
-            print("This group already exists!")
+        if i.name == name and i.year == int(year):
+            print("Эта группа уже существует!")
             if __name__ == '__main__':
                 PrintGroupMenu()
     else:
-        x = create_group(name, year)
-        groups.append(x)
-        print('Group created')
+        try:
+            x = create_group(name, year)
+            groups.append(x)
+        except Exception:
+            print('Ошибка')
+        print('Группа создана!')
     if __name__ == '__main__':
         PrintGroupMenu()
 
 
 def EditGroup():
-    print('Enter group name')
+    print('Введите название группы')
     name = str(input())
-    print('Enter Group year')
+    print('Введите год группы')
     year = str(input())
     for i in groups:
-        if i.name == name and i.year == year:
-            print("What need to edit?\n1 year\n2 name")
+        if i.name == name and i.year == int(year):
+            print("Что нужно редактировать? \n1 Название группы \n2 Год группы")
             w = input()
             if w == "1":
-                print("enter year")
+                print("Введите год")
                 year = str(input())
                 for j in groups:
-                    if i.name == name and i.year == year:
-                        print("The group with this year and name already exists. Try again")
+                    if i.name == name and i.year == int(year):
+                        print("Группа с этим годом и названием уже существует. Попробуйте снова")
                         if __name__ == '__main__':
                             PrintGroupMenu()
                         break
                 else:
                     i.name = name
                     i.year = year
-                    print("Group year changed!")
+                    print("Год группы изменился!")
                     if __name__ == '__main__':
                         PrintGroupMenu()
                     break
             elif w == "2":
-                print("enter name")
+                print("Введите название")
                 name = str(input())
                 i.name = name
-                print("Group name changed!")
+                print("Название группы изменено!")
                 PrintGroupMenu()
     else:
-        print("This group not exist!")
+        print("Такой группы не существует!")
     if __name__ == '__main__':
         PrintGroupMenu()
 
 
 def DeleteGroup():
-    print('Enter group name')
+    print('Введите название группы')
     name = str(input())
-    print('Enter Group year')
+    print('Введите год группы')
     year = str(input())
     for i in groups:
-        if i.name == name and i.year == year:
+        if i.name == name and i.year == int(year):
             groups.remove(i)
-            print('Group deleted')
+            print('Группа удалена!')
             if __name__ == '__main__':
                 PrintGroupMenu()
             break
     else:
-        print("This group not exist!")
+        print("Группа удалена!")
         PrintGroupMenu()
     if __name__ == '__main__':
         PrintGroupMenu()
