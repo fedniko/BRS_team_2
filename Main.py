@@ -212,12 +212,20 @@ def AddStudent():
         email = str(input())
         print('Введите телефон студента')
         phone = str(input())
-        try:
-            x = create_student(code, fio, birthdate, email, phone)
-            students.append(x)
-            print('Студент успешно создан')
-        except Exception:
-            print('Ошибка')
+        print('Введите название группы студента')
+        grno = input()
+        print('Введите год группы студента')
+        grgo = int(input())
+        for j in groups:
+            if j.name == grno and j.year == grgo:
+                try:
+                    x = create_student(code, fio, birthdate, email, phone, j)
+                    students.append(x)
+                    print('Студент успешно создан')
+                except Exception:
+                    print('Ошибка')
+        else:
+            print('Группа не найдена')
     if __name__ == '__main__':
         PrintStudentMenu()
 
@@ -236,8 +244,8 @@ def EditStudent():
         if i.code == a:
             print('Что хотите изменить?')
             print("1 Код\n2 ФИО\n3 Дата рождения\n4 Почта\n5 Телефон\n6 Назад")
-            w = int(input())
-            if w == 1:
+            w = input()
+            if w == "1":
                 print('Введите новый код студента')
                 new_code = (int(input()))
                 for u in students:
@@ -249,23 +257,34 @@ def EditStudent():
                 else:
                     i.code = new_code
                     print('Успешно изменено')
-            elif w == 2:
+            elif w == "2":
                 print('Введите новое ФИО студента')
                 i.fio = (str(input()))
                 print('Успешно изменено')
-            elif w == 3:
+            elif w == "3":
                 print('Введите новую дату рождения студента')
                 i.birthdate = (str(input()))
                 print('Успешно изменено')
-            elif w == 4:
+            elif w == "4":
                 print('Введите новую почту студента')
                 i.email = (str(input()))
                 print('Успешно изменено')
-            elif w == 5:
+            elif w == "5":
                 print('Введите новый телефон студента')
                 i.phone = (str(input()))
                 print('Успешно изменено')
-            elif w == 5:
+            elif w == "6":
+                print('Введите новое название группы студента')
+                grno = input()
+                print('Введите новый год группы студента')
+                grgo = int(input())
+                for u in groups:
+                    if u.name == grno and u.year == grgo:
+                        i.group = u
+                        print('Успешно изменено')
+                else:
+                    print('Группа не найдена')
+            elif w == "7":
                 PrintStudentMenu()
             else:
                 print("error")
